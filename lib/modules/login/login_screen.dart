@@ -3,6 +3,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project/modules/login/cubit/cubit.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
 
@@ -29,7 +30,29 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (BuildContext context) => AppLoginCubit(),
       child: BlocConsumer<AppLoginCubit, AppLoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is AppLoginSuccessState)
+          {
+            if(state.loginModel.status == true)
+            {
+              print(state.loginModel.message);
+              print(state.loginModel.data?.token);
+            }else
+            {
+              print(state.loginModel.message);
+
+              Fluttertoast.showToast(
+                  msg:  state.loginModel.message,
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.cyan,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+            }
+          }
+        },
         builder: (context, state)
         {
           return Scaffold(
@@ -70,6 +93,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         defaultFormField(
                           controller: passwordController,
                           type: TextInputType.visiblePassword,
+                          onSubmit: (value) {
+                            if (formKey.currentState!.validate())
+                            {
+                              AppLoginCubit.get(context).userLogin(
+                                email: emailAddressController.text,
+                                password: passwordController.text,
+                              );
+                            }
+                          },
                           validate: (value) {
                             if (value == null || value.isEmpty) {
                               return 'please enter your password';
