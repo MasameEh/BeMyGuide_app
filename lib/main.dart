@@ -1,20 +1,37 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
 import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
+import 'package:graduation_project/shared/network/local/cache_helper.dart';
 import 'package:graduation_project/shared/network/remote/dio_helper.dart';
 
-void main() {
-
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(const MyApp());
+  await CacheHelper.init();
+  Widget widget;
+  String? token = CacheHelper.getData(key: 'token');
+  if(token == null) {
+    widget = LoginScreen();
+  } else {
+    widget = EyesLayout();
+  }
+  runApp( MyApp(
+  startWidget: widget,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+
+  final Widget startWidget;
+  MyApp({
+    required this.startWidget
+  });
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -36,7 +53,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: startWidget,
     );
   }
 }

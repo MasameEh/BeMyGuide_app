@@ -4,8 +4,10 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
 import 'package:graduation_project/modules/login/cubit/cubit.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
+import 'package:graduation_project/shared/network/local/cache_helper.dart';
 
 import '../../shared/components/components.dart';
 import '../register/register_screen.dart';
@@ -37,6 +39,10 @@ class _LoginScreenState extends State<LoginScreen> {
             {
               print(state.loginModel.message);
               print(state.loginModel.data?.token);
+              CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value)
+              {
+                navigateAndFinish(context,  EyesLayout());
+              });
             }else
             {
               print(state.loginModel.message);
@@ -46,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.cyan,
+                  backgroundColor: Colors.red,
                   textColor: Colors.white,
                   fontSize: 16.0
               );
@@ -148,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),),
                             TextButton(
                               onPressed: () {
-                                navigateTo(context, Register(),);
+                                navigateTo(context, RegisterScreen(),);
                               },
                               child: Text(
                                 'SIGN UP',
