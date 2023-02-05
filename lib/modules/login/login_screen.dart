@@ -19,7 +19,6 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
 class _LoginScreenState extends State<LoginScreen> {
 
   var emailAddressController = TextEditingController();
@@ -33,31 +32,44 @@ class _LoginScreenState extends State<LoginScreen> {
       create: (BuildContext context) => AppLoginCubit(),
       child: BlocConsumer<AppLoginCubit, AppLoginStates>(
         listener: (context, state) {
-          if(state is AppLoginSuccessState)
-          {
-            if(state.loginModel.status == true)
+          if(state is AppLoginSuccessState) {
+            CacheHelper.saveData(
+                key: 'uId',
+                value: state.uId)
+                .then((value) {
+              navigateAndFinish(context, EyesLayout());
+            });
+          }
+            if(state is AppLoginErrorState)
             {
-              print(state.loginModel.message);
-              print(state.loginModel.data?.token);
-              CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value)
-              {
-                navigateAndFinish(context,  EyesLayout());
-              });
-            }else
-            {
-              print(state.loginModel.message);
-
-              Fluttertoast.showToast(
-                  msg:  state.loginModel.message,
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0
+              showToast(
+                  text: state.error,
+                  state: ToastStates.ERROR,
               );
             }
-          }
+            // if(state.loginModel.status == true)
+            // {
+            //   print(state.loginModel.message);
+            //   print(state.loginModel.data?.token);
+            //   CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value)
+            //   {
+            //     navigateAndFinish(context,  EyesLayout());
+            //   });
+            // }else
+            // {
+              // print(state.loginModel.message);
+              //
+              // Fluttertoast.showToast(
+              //     msg:  state.loginModel.message,
+              //     toastLength: Toast.LENGTH_LONG,
+              //     gravity: ToastGravity.BOTTOM,
+              //     timeInSecForIosWeb: 5,
+              //     backgroundColor: Colors.red,
+              //     textColor: Colors.white,
+              //     fontSize: 16.0
+              // );
+            // }
+
         },
         builder: (context, state)
         {

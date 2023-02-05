@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
@@ -10,16 +11,22 @@ import 'package:graduation_project/shared/network/remote/dio_helper.dart';
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
   Widget widget;
-  String? token = CacheHelper.getData(key: 'token');
-  if(token == null) {
-    widget = LoginScreen();
-  } else {
-    widget = EyesLayout();
-  }
+  var uId = CacheHelper.getData(key: 'uId');
+  if(uId == null) {
+      widget = LoginScreen();
+    } else {
+      widget = EyesLayout();
+    }
+  // if(token == null) {
+  //   widget = LoginScreen();
+  // } else {
+  //   widget = EyesLayout();
+  // }
   runApp( MyApp(
   startWidget: widget,
   ));

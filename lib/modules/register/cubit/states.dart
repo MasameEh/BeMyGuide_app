@@ -8,14 +8,20 @@ class AppRegisterInitialState extends AppRegisterStates{}
 
 class AppRegisterLoadingState extends AppRegisterStates{}
 
-class AppRegisterSuccessState extends AppRegisterStates
-{
-  final AppLoginModel loginModel;
-  AppRegisterSuccessState(this.loginModel);
-}
+class AppRegisterSuccessState extends AppRegisterStates {}
 
 class AppRegisterErrorState extends AppRegisterStates
 {
    late String error;
   AppRegisterErrorState(this.error);
+}
+
+
+
+class AppCreateUserSuccessState extends AppRegisterStates {}
+
+class AppCreateUserErrorState extends AppRegisterStates
+{
+  late String error;
+  AppCreateUserErrorState(this.error);
 }

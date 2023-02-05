@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "257895444781",
+    "project_id": "eyes-app-d424c",
+    "storage_bucket": "eyes-app-d424c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257895444781:android:222f66cd6901548914e3a4",
+        "android_client_info": {
+          "package_name": "com.example.graduation_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257895444781-qbr7aast69nisbt1uvi4ugs6h3augv4e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.graduation_project",
+            "certificate_hash": "9dda3ce035566a3aee053c8b9a4434665ba064df"
+          }
+        },
+        {
+          "client_id": "257895444781-ca4ejd18c2clcu5si9rqcmtduml5glb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN_M-inUlog_6iFbRg_-lieoVmEidrrwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257895444781-ca4ejd18c2clcu5si9rqcmtduml5glb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

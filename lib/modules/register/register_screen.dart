@@ -30,31 +30,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
       create: (BuildContext context) => AppRegisterCubit(),
       child: BlocConsumer<AppRegisterCubit, AppRegisterStates>(
         listener: (context, state) {
-          if(state is AppRegisterSuccessState)
+          if(state is AppCreateUserSuccessState)
           {
-            if(state.loginModel.status == true)
-            {
-              print(state.loginModel.message);
-              print(state.loginModel.data?.token);
-              CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value)
-              {
-
-                navigateAndFinish(context,  EyesLayout());
-              });
-            }else
-            {
-              print(state.loginModel.message);
-
-              Fluttertoast.showToast(
-                  msg:  state.loginModel.message,
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  timeInSecForIosWeb: 5,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0
-              );
-            }
+            navigateAndFinish(context,  EyesLayout());
+            // if(state.loginModel.status == true)
+            // {
+            //   print(state.loginModel.message);
+            //   print(state.loginModel.data?.token);
+            //   CacheHelper.saveData(key: 'token', value: state.loginModel.data?.token).then((value)
+            //   {
+            //
+            //     navigateAndFinish(context,  EyesLayout());
+            //   });
+            // }else
+            // {
+            //   print(state.loginModel.message);
+            //
+            //   Fluttertoast.showToast(
+            //       msg:  state.loginModel.message,
+            //       toastLength: Toast.LENGTH_LONG,
+            //       gravity: ToastGravity.BOTTOM,
+            //       timeInSecForIosWeb: 5,
+            //       backgroundColor: Colors.red,
+            //       textColor: Colors.white,
+            //       fontSize: 16.0
+            //   );
+            // }
           }
         },
         builder: (context, state)

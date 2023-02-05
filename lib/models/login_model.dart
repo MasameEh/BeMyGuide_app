@@ -2,43 +2,49 @@ class AppLoginModel
 {
   bool? status;
   late String message;
-  UserData? data;
+  UserDataModel? data;
 
   AppLoginModel.fromJson(Map<String, dynamic> json)
   {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? UserData.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserDataModel.fromJson(json['data']) : null;
   }
 }
 
-class UserData
+class UserDataModel
 {
-  int? id;
   String? name;
   String? email;
   String? phone;
-  String? image;
-  String? token;
+  String? uId;
+  bool? isEmailVerified;
 
-  // UserData({
-  //   this.id,
-  //   this.name,
-  //   this.email,
-  //   this.phone,
-  //   this.image,
-  //   this.token,
-  // });
+  UserDataModel({
+    this.name,
+    this.email,
+    this.phone,
+    this.uId,
+    this.isEmailVerified,
+  });
 
-  // named constructor
-  UserData.fromJson(Map<String, dynamic> json)
+  //named constructor
+  UserDataModel.fromJson(Map<String, dynamic> json)
   {
-    id = json['id'];
     name = json['name'];
     email = json['email'];
     phone = json['phone'];
-    image = json['image'];
-    token = json['token'];
+    uId = json['uId'];
+    isEmailVerified = json['isEmailVerified'];
+  }
+  Map<String,dynamic> toMap(){
+    return{
+      'name':name,
+      'email':email,
+      'phone':phone,
+      'uId':uId,
+      'isEmailVerified':isEmailVerified,
+    };
   }
 }
 
