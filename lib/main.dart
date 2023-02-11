@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
+import 'package:graduation_project/modules/blind_features/blindfeatures_screen.dart';
 import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: startWidget,
+      home: BlindFeaturesScreen(),
     );
   }
 }
