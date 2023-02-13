@@ -2,8 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../modules/login/login_screen.dart';
+import '../network/local/cache_helper.dart';
+
 Widget defaultButton({
   double width = double.infinity,
+  double height = 50.0,
   Color background = Colors.blue,
   required Function function,
   required String text,
@@ -11,6 +15,7 @@ Widget defaultButton({
 }) =>
     Container(
       width: width,
+      height: height,
       child: MaterialButton(
         onPressed: () {
           function();
@@ -18,8 +23,9 @@ Widget defaultButton({
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 25.0,
             color: Colors.white,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -129,4 +135,20 @@ Color chooseToastColor(ToastStates state) {
   }
 
   return color;
+}
+
+void signOut(context)
+{
+  CacheHelper.removeData(
+    key: 'uId',
+  ).then((value)
+  {
+    if (value)
+    {
+      navigateAndFinish(
+        context,
+        LoginScreen(),
+      );
+    }
+  });
 }

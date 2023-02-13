@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+
+
+import 'package:flutter/material.dart';
+
+import '../../shared/components/components.dart';
+import '../settings/settings_screen.dart';
+
+class BlindFeaturesScreen extends StatelessWidget {
+  const BlindFeaturesScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Blind features'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+
+          onTap: (index)
+          {
+            navigateTo(context, Settings());
+          },
+          items:[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ]
+      ),
+    );
+  }
+}
+=======
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -132,6 +166,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
 
     return result!.paths;
   }
+<<<<<<< HEAD
 
 //send images
   Future<void> sendImage() async {
@@ -148,3 +183,6 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
     await Share.shareFiles(filePath, text: 'List of files');
   }
 }
+=======
+>>>>>>> origin/master
+>>>>>>> 70425ef1f5e01aed294558805da34f59a8a99936

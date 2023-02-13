@@ -21,6 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
+
   bool isPass = true;
   var formKey = GlobalKey<FormState>();
 
@@ -57,11 +58,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
             //   );
             // }
           }
+          if(state is AppRegisterErrorState)
+          {
+            showToast(
+              text: state.error,
+              state: ToastStates.ERROR,
+            );
+          }
         },
         builder: (context, state)
         {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              titleSpacing: 3.0,
+              title: Text(
+                  'See',
+              style: TextStyle(
+              color: Colors.white,) ,
+              ),
+            ),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
