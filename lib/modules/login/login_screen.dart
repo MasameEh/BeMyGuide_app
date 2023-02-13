@@ -3,7 +3,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
 import 'package:graduation_project/modules/login/cubit/cubit.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
@@ -38,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 value: state.uId)
                 .then((value) {
               navigateAndFinish(context, EyesLayout());
+              // AppLoginCubit.get(context).getUserData();
             });
           }
             if(state is AppLoginErrorState)
@@ -74,7 +75,16 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state)
         {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              title: Padding(
+                padding: EdgeInsetsDirectional.only(start: 15.0),
+                child: Text(
+                  'See',
+                  style: TextStyle(
+                    color: Colors.white,) ,
+                ),
+              ),
+            ),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
@@ -86,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text('Login',
                           style:  TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             fontSize: 30.0,
                           ),
                         ),
@@ -162,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text('Don\'t have an account?',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                               ),),
                             TextButton(
                               onPressed: () {
@@ -171,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 'SIGN UP',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.cyan,
                                 ),
                               ),

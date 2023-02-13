@@ -18,24 +18,25 @@ class UserDataModel
   String? email;
   String? phone;
   String? uId;
-  bool? isEmailVerified;
+  // bool? isEmailVerified;
 
   UserDataModel({
     this.name,
     this.email,
     this.phone,
     this.uId,
-    this.isEmailVerified,
+
+    // this.isEmailVerified,
   });
 
   //named constructor
-  UserDataModel.fromJson(Map<String, dynamic> json)
+  UserDataModel.fromJson(Map<String, dynamic>? json)
   {
-    name = json['name'];
+    name = json!['name'];
     email = json['email'];
     phone = json['phone'];
     uId = json['uId'];
-    isEmailVerified = json['isEmailVerified'];
+    // isEmailVerified = json['isEmailVerified'];
   }
   Map<String,dynamic> toMap(){
     return{
@@ -43,7 +44,7 @@ class UserDataModel
       'email':email,
       'phone':phone,
       'uId':uId,
-      'isEmailVerified':isEmailVerified,
+      // 'isEmailVerified':isEmailVerified,
     };
   }
 }
