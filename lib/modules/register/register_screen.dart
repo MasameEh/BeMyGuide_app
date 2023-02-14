@@ -33,6 +33,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           if(state is AppCreateUserSuccessState)
           {
+            CacheHelper.saveData(
+                key: 'uId',
+                value: state.uId);
             navigateAndFinish(context,  EyesLayout());
             // if(state.loginModel.status == true)
             // {
@@ -142,6 +145,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           validate: (value) {
                             if (value == null || value.isEmpty) {
                               return 'please enter your password';
+                            }else if(value.length < 6){
+                              return 'password is too short';
                             }
                             return null;
                           },

@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 value: state.uId)
                 .then((value) {
               navigateAndFinish(context, EyesLayout());
-              // AppLoginCubit.get(context).getUserData();
+
             });
           }
             if(state is AppLoginErrorState)

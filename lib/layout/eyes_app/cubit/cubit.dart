@@ -19,6 +19,7 @@ class AppCubit extends Cubit<AppStates> {
 
     FirebaseFirestore.instance.collection('users').doc(CacheHelper.getData(key:'uId')).get().then((value) {
       print(value.data());
+
       userModel = UserDataModel.fromJson(value.data());
       emit(AppGetUserSuccessState());
     }).catchError((error) {

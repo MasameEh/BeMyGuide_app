@@ -18,7 +18,11 @@ class AppRegisterErrorState extends AppRegisterStates
 
 
 
-class AppCreateUserSuccessState extends AppRegisterStates {}
+class AppCreateUserSuccessState extends AppRegisterStates {
+  final String? uId;
+
+  AppCreateUserSuccessState(this.uId);
+}
 
 class AppCreateUserErrorState extends AppRegisterStates
 {

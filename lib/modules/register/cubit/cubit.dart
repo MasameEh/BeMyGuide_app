@@ -29,10 +29,9 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
         email: email ,
         name: name,
         phone: phone ,
-        uId: value.user!.uid ,
+        uId: value.user?.uid ,
       );
-      print(value.user!.email);
-      print(value.user!.uid);
+
 
     }).catchError((error){
     emit(AppRegisterErrorState(error.toString()));
@@ -40,10 +39,10 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
   }
 
   void userCreate({
-    required String email,
+    required String? email,
     required String name,
     required String phone,
-    required String uId,
+    required String? uId,
   })
   {
     UserDataModel model = UserDataModel(
@@ -57,7 +56,8 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
         .doc(uId)
         .set(model.toMap())
         .then((value) {
-      emit(AppCreateUserSuccessState());
+      emit(AppCreateUserSuccessState(uId));
+      print(uId);
     }).catchError((error){
       emit(AppCreateUserErrorState(error.toString()));
     });

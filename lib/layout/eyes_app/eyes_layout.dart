@@ -81,6 +81,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                         function: () {
                             submit();
                             CacheHelper.putBoolean(key: 'isVolunteer', value: false);
+                            AppCubit.get(context).getUserData();
                         },
                         text: 'I want an assistant' ,
                         background: Colors.cyan,
@@ -94,6 +95,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                         function: () {
                           submit1();
                           CacheHelper.putBoolean(key: 'isBlind', value: false);
+                          AppCubit.get(context).getUserData();
                         },
                         text: 'I want to volunteer' ,
                         background: Colors.cyan,

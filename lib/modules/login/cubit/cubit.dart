@@ -33,16 +33,5 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppLoginErrorState(error.toString()));
     });
   }
-  // void getUserData() {
-  //   emit(AppgetUserLoadingState());
-  //
-  //   FirebaseFirestore.instance.collection('users').doc(CacheHelper.getData(key:'uId')).get().then((value) {
-  //     print(value.data());
-  //     userModel = UserDataModel.fromJson(value.data());
-  //     emit(AppgetUserSuccessState());
-  //   }).catchError((error) {
-  //     print(error.toString());
-  //     emit(AppgetUserErrorState(error.toString()));
-  //   });
-  // }
+
 }
