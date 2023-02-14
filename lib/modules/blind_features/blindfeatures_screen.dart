@@ -8,6 +8,9 @@ import 'package:path/path.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
 
+import '../../shared/components/components.dart';
+import '../settings/settings_screen.dart';
+
 class BlindFeaturesScreen extends StatefulWidget {
   const BlindFeaturesScreen({super.key});
 
@@ -109,6 +112,19 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+
+          onTap: (index)
+          {
+            navigateTo(context, Settings());
+          },
+          items:[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ]
       ),
     );
   }
