@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: startWidget,
+            home: BlindFeaturesScreen(),
           );
         },
       ),
