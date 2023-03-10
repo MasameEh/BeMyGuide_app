@@ -32,7 +32,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Blind page')),
+      appBar: AppBar(leading: IconButton(icon:Icon(Icons.arrow_back) ,
+      onPressed: () { 
+      },
+      ),
+      
+      title: Text('Blind page')),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
