@@ -30,9 +30,9 @@ class Settings extends StatelessWidget {
       },
       builder: (context, state){
         var userModel = AppCubit.get(context).userModel;
-        nameController.text = userModel?.name;
-        phoneController.text = userModel?.phone;
-        emailAddressController.text = userModel?.email;
+        nameController.text = (userModel?.name)!;
+        phoneController.text =( userModel?.phone)! ;
+        emailAddressController.text = (userModel?.email)! ;
 
         return Scaffold(
           appBar: AppBar(

@@ -32,7 +32,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Blind page')),
+      appBar: AppBar(leading: IconButton(icon:Icon(Icons.arrow_back) ,
+      onPressed: () { 
+      },
+      ),
+      
+      title: Text('Blind page')),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,10 +47,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
             ),
 
             //Share files
-            ElevatedButton(
-              onPressed: sendFiles,
-              child: Text('Send images'),
-            ),
+           
             SizedBox(
               height: 10,
             ),
@@ -96,7 +98,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
             SizedBox(
               height: 10,
             ),
-            //share text
+            //share text(name&password)
             ElevatedButton(
               onPressed: () {
                 if (nameController.text.isEmpty || pwController.text.isEmpty) {
@@ -109,6 +111,10 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
             ),
             SizedBox(
               height: 10,
+            ),
+             ElevatedButton(
+              onPressed: sendFiless,
+              child: Text('Send images'),
             ),
           ],
         ),
@@ -128,39 +134,51 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
       ),
     );
   }
-
+// pick image from camera
   void pickImageFromCamera() async {
     var image = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image!.path);
     });
   }
-
+// pick image from gallery
   void pickImageFromGallery() async {
     var image = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       _image = File(image!.path);
     });
   }
-
+// pick files 
   Future<List<String?>> pickFile() async {
     final result = await FilePicker.platform.pickFiles(allowMultiple: true);
 
     return result!.paths;
   }
 
-//send images
+//send images(only one image)
   Future<void> sendImage() async {
     final res = await ImagePicker().pickImage(source: ImageSource.gallery);
     late String paths = res!.path;
     await Share.shareFiles([paths], text: 'Image 1');
   }
 
-  //send files
+  //send files(more than one image)
   Future<void> sendFiles() async {
     final res = await FilePicker.platform.pickFiles(allowMultiple: true);
     List<String>? filePath =
         res!.files.map((e) => e.path).cast<String>().toList();
     await Share.shareFiles(filePath, text: 'List of files');
   }
+ Future<void> sendFiless() async {
+    final res = await FilePicker.platform.pickFiles(allowMultiple: true);
+    if(res !=null){
+    List<String>? filePath =
+     res!.files.map((e) => e.path).cast<String>().toList();
+    await Share.shareFiles(filePath, text: 'List of files');
+    }
+    else{
+     
+    }
+  }
+
 }
