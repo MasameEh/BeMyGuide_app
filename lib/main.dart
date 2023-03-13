@@ -52,17 +52,17 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
 
             theme: ThemeData(
-              primarySwatch: Colors.cyan,
-              scaffoldBackgroundColor: Colors.white,
+              primarySwatch: Colors.blue,
+              //scaffoldBackgroundColor: Colors.white,
               appBarTheme: const AppBarTheme(
-                backgroundColor: Colors.cyan,
+                //backgroundColor: Colors.white,
                 iconTheme: IconThemeData(
                   color: Colors.black,
                 ),
                 backwardsCompatibility: false,
                 elevation: 0.0,
                 systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Colors.cyan,
+                  statusBarColor: Colors.black12,
                   statusBarIconBrightness: Brightness.dark,
                 ),
               ),

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../modules/login/login_screen.dart';
 import '../network/local/cache_helper.dart';
+import '../network/styles/colors.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -25,7 +26,7 @@ Widget defaultButton({
           style: TextStyle(
             fontSize: 25.0,
             color: Colors.white,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -64,7 +65,14 @@ Widget defaultFormField({
       validator: validate,
       readOnly: Readable,
       decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),)
+        ,
         labelText: label,
+        labelStyle: TextStyle(
+            color: darken(Colors.blue, .2),
+            fontWeight: FontWeight.bold
+        ),
         prefixIcon: Icon(
           prefix,
         ),

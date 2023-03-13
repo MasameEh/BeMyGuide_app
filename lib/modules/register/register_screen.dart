@@ -194,7 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }
                             },
                             text: 'Sign up' ,
-                            background: Colors.cyan,
+                            background: Colors.white24,
                           ),
                           fallback: (context) => Center(child: CircularProgressIndicator()),
                         ),
@@ -210,3 +210,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
