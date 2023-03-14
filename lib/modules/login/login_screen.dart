@@ -102,8 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(
                               height: 20.0,
                             ),
-                            SingleChildScrollView(
-                              child: Container(
+                             Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
@@ -116,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   padding: const EdgeInsets.all(30.0),
                                   child: Column(
                                     children: [
+                                      SizedBox(height:20.0 ,),
                                       defaultFormField(
                                         controller: emailAddressController,
                                         type: TextInputType.emailAddress,
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               'SIGN UP',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                color: lighten(Colors.pink, .2),
+                                                color: darken(Colors.blue, .2),
                                               ),
                                             ),
                                           )
@@ -207,7 +207,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
-                            ),
                           ],
                         ),
                       ),
