@@ -82,7 +82,7 @@ flutter:
     - assets/SignUp.png
     - assets/Home_background.png
     - assets/Header.png
-    - assets/ana.jpg
+  # - assets/ana.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

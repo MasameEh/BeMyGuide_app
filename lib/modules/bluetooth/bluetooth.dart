@@ -174,7 +174,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
     final res = await FilePicker.platform.pickFiles(allowMultiple: true);
     if(res !=null){
       List<String>? filePath =
-      res!.files.map((e) => e.path).cast<String>().toList();
+      res.files.map((e) => e.path).cast<String>().toList();
       await Share.shareFiles(filePath, text: 'List of files');
     }
     else{
