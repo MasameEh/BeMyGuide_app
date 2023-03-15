@@ -1,5 +1,6 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -8,7 +9,10 @@ import 'package:path/path.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
 
+import '../../layout/eyes_app/cubit/cubit.dart';
+import '../../layout/eyes_app/cubit/states.dart';
 import '../../shared/components/components.dart';
+import '../bluetooth/bluetooth.dart';
 import '../settings/settings_screen.dart';
 
 class BlindFeaturesScreen extends StatefulWidget {
@@ -19,166 +23,198 @@ class BlindFeaturesScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<BlindFeaturesScreen> {
-  File? _image;
-  final ImagePicker _picker = ImagePicker();
-  bool pwVisible = true;
-  var nameController = TextEditingController();
-  var pwController = TextEditingController();
-  SnackBar snackBar = SnackBar(
-    content: Text('missing name or passwoed'),
-  );
-  List<String> imagePaths = [];
-  List<String> imageNames = [];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(leading: IconButton(icon:Icon(Icons.arrow_back) ,
-      onPressed: () { 
-      },
-      ),
-      
-      title: Text('Blind page')),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
+    return BlocConsumer<AppCubit, AppStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(
+              color: Colors.white, //
             ),
-
-            //Share files
-           
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('   wifi Name'),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: '   name',
-              ),
-              controller: nameController,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('   Passwod'),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: '   password',
-                suffixIcon: IconButton(
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: 10.0,
+                ),
+                child: Container(
+                  width: 34.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.white.withOpacity(.3),
+                  ),
+                  child: IconButton(
+                    color: Colors.white,
+                    iconSize: 20,
+                    icon: Icon(Icons.settings),
                     onPressed: () {
-                      setState(() {
-                        pwVisible = !pwVisible;
-                      });
+                      navigateTo(context, Settings());
                     },
-                    icon: pwVisible
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off)),
+                  ),
+                ),
               ),
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: pwVisible,
-              controller: pwController,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            //share text(name&password)
-            ElevatedButton(
-              onPressed: () {
-                if (nameController.text.isEmpty || pwController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                } else {
-                  Share.share('${nameController.text}\n${pwController.text}');
-                }
-              },
-              child: Text('send wifi name&password'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-             ElevatedButton(
-              onPressed: sendFiless,
-              child: Text('Send images'),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/Home_background.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                    ),
+                    Text(
+                      'Assistant',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 40,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      'Mode',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 40,
+                          color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50)),
+                        color: Color.fromARGB(255, 250, 250, 250),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/gp-logo.png',
+                                scale: 6,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('BeMyGuide',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 180, 31, 87))),
+                            ],
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              navigateTo(context, bluetoothScreen());
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.9,
+                              height: 60.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black.withOpacity(.4)),
+                                ),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SizedBox(width: 7,),
+                                  Icon(Icons.bluetooth,
+                                    color: Colors.grey.withOpacity(.6),
+                                    size: 30,
+                                  ),
+                                  SizedBox(width: 7,),
+                                  Text('Bluetooth',
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        color: Color.fromARGB(255,180,31,87),
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ),
+                          ),
+                          // defaultButton(
+                          //   width: 300.0,
+                          //   radius: 20.0,
+                          //   height: 60.0,
+                          //   borderColor: Colors.black,
+                          //   function: () {
+                          //     navigateTo(context, bluetoothScreen());
+                          //   },
+                          //   textColor: Color.fromARGB(255, 180, 31, 87),
+                          //   text: 'Bluetooth',
+                          //   background: Colors.white,
+                          // ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          GestureDetector(
+                            onTap: (){
 
-          onTap: (index)
-          {
-            navigateTo(context, Settings());
-          },
-          items:[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.9,
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 7,),
+                                    Icon(Icons.video_call,
+                                      color: Colors.grey.withOpacity(.6),
+                                      size: 30,
+                                    ),
+                                    SizedBox(width: 7,),
+                                    Text('Video Call',
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                          color: Color.fromARGB(255,180,31,87),
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Image.asset(
+                            'assets/Header.png',
+                            scale: 1,
+                            fit: BoxFit.fitHeight,
+                            opacity: AlwaysStoppedAnimation(.3),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ]
-      ),
+          ),
+        );
+      },
     );
   }
-// pick image from camera
-  void pickImageFromCamera() async {
-    var image = await _picker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-// pick image from gallery
-  void pickImageFromGallery() async {
-    var image = await _picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-// pick files 
-  Future<List<String?>> pickFile() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
-
-    return result!.paths;
-  }
-
-//send images(only one image)
-  Future<void> sendImage() async {
-    final res = await ImagePicker().pickImage(source: ImageSource.gallery);
-    late String paths = res!.path;
-    await Share.shareFiles([paths], text: 'Image 1');
-  }
-
-  //send files(more than one image)
-  Future<void> sendFiles() async {
-    final res = await FilePicker.platform.pickFiles(allowMultiple: true);
-    List<String>? filePath =
-        res!.files.map((e) => e.path).cast<String>().toList();
-    await Share.shareFiles(filePath, text: 'List of files');
-  }
- Future<void> sendFiless() async {
-    final res = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if(res !=null){
-    List<String>? filePath =
-     res!.files.map((e) => e.path).cast<String>().toList();
-    await Share.shareFiles(filePath, text: 'List of files');
-    }
-    else{
-     
-    }
-  }
-
 }

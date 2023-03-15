@@ -153,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       label: 'Email Address',
-                                      prefix: Icons.email_outlined,
+                                      prefix: Icons.email_rounded,
                                     ),
                                     SizedBox(
                                       height: 20.0,
@@ -181,7 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       label: 'Password',
-                                      prefix: Icons.lock_outline_rounded,
+                                      prefix: Icons.lock_rounded,
                                       isPassword: isPass,
                                       suffix: isPass? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                       suffixPressed: ()

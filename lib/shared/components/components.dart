@@ -13,6 +13,8 @@ Widget defaultButton({
   required Function function,
   required String text,
   double radius = 4.0,
+  Color textColor = Colors.white,
+  Color borderColor = Colors.white,
 }) =>
     Container(
       width: width,
@@ -25,12 +27,16 @@ Widget defaultButton({
           text,
           style: TextStyle(
             fontSize: 25.0,
-            color: Colors.white,
+            color: textColor,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       decoration: BoxDecoration(
+        border: Border.all(
+          color: borderColor,
+          width: 1,
+        ),
         borderRadius: BorderRadius.circular(
           radius,
         ),
