@@ -25,7 +25,6 @@ class UserDataModel
     this.email,
     this.phone,
     this.uId,
-
     // this.isEmailVerified,
   });
 

@@ -14,6 +14,7 @@ import 'package:graduation_project/shared/network/remote/dio_helper.dart';
 
 import 'layout/eyes_app/cubit/cubit.dart';
 import 'layout/eyes_app/cubit/states.dart';
+import 'modules/speech/speechscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +51,6 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
-
             theme: ThemeData(
               primarySwatch: Colors.blue,
               //scaffoldBackgroundColor: Colors.white,
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: startWidget,
+            home: SpeechScreen(),
           );
         },
       ),
