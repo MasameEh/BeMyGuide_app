@@ -1,17 +1,13 @@
-// TODO Implement this library.
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
 
 import '../../shared/components/components.dart';
 import '../settings/settings_screen.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 
 class bluetoothScreen extends StatefulWidget {
   const bluetoothScreen({super.key});
