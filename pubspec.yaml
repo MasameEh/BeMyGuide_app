@@ -52,6 +52,9 @@ dependencies:
   file_picker: ^5.2.5
   avatar_glow: ^2.0.2
   speech_to_text: ^6.1.1
+  http: ^0.13.6
+  chat_gpt_sdk: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +87,7 @@ flutter:
     - assets/SignUp.png
     - assets/Home_background.png
     - assets/Header.png
+    - assets/ChatGPT_logo.svg.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

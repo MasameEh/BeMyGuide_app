@@ -1,8 +1,13 @@
 
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:graduation_project/shared/network/api_servcies.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../models/chat_model.dart';
 import '../../shared/network/styles/colors.dart';
 
 class SpeechScreen extends StatefulWidget {
@@ -14,10 +19,21 @@ class SpeechScreen extends StatefulWidget {
 
 class _SpeechScreenState extends State<SpeechScreen> {
 
-   SpeechToText speechToText = SpeechToText();
+  SpeechToText speechToText = SpeechToText();
+
+  final List<ChatMessage> messages = [];
 
   String text = "Hold the button and start speaking";
   bool isListening = false;
+
+  var scrollController = ScrollController();
+  scrollMethod() { 
+    scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut);
+  }
+
   @override
   // void initState(){
   //
@@ -29,7 +45,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
       floatingActionButton: AvatarGlow(
         endRadius: 90.0,
         animate: isListening,
-        duration: Duration(milliseconds: 2000),
+        duration: const Duration(milliseconds: 2000),
         glowColor: lighten(Colors.pink, .2),
         repeat: true,
         repeatPauseDuration: Duration(milliseconds: 2000),
@@ -54,11 +70,18 @@ class _SpeechScreenState extends State<SpeechScreen> {
 
               }
           },
-          onTapUp:(details){
+          onTapUp:(details) async{
             setState(() {
               isListening = false;
             });
             speechToText.stop();
+
+             messages.add(ChatMessage(text: text, type: ChatMessageType.user));
+             var msg =  await ApiServices.sendMessage(text);
+             print(msg);
+             setState(() {
+               messages.add(ChatMessage(text: msg, type: ChatMessageType.bot));
+             });
           },
           child: CircleAvatar(
             radius: 35,
@@ -71,21 +94,82 @@ class _SpeechScreenState extends State<SpeechScreen> {
         backgroundColor: lighten(Colors.pink, .2),
         centerTitle: true,
         leading: Icon(Icons.sort_rounded,color: Colors.white),
-        title: Text(
-          ' Speech to Text'
+        title: const Text(
+          ' Chatgbt Assistant'
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.center,
-          margin: const EdgeInsets.only(bottom: 150.0),
+      body: Container(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-          child: Text(text,
-          style: const TextStyle(
-            color: Colors.black54,fontSize: 20,fontWeight: FontWeight.w600,)
+          child: Column(
+            children: [
+              Text(text,
+              style:  TextStyle(
+                color: isListening ? Colors.black87 :Colors.black54,fontSize: 20,fontWeight: FontWeight.w600,)
+              ),
+              const SizedBox(height: 12.0,),
+              Expanded(
+                child:
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15,vertical: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: chatGptColor,
+                  ),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                      controller: scrollController,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        var chat = messages[index];
+                        return chatBubble(
+                          chatText: chat.text, type: chat.type,
+                        );
+                      },
+                      itemCount: messages.length,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 25.0,),
+            ],
           ),
           ),
-      ),
       );
   }
+  Widget chatBubble({
+    required chatText,
+    required ChatMessageType? type,
+    }){
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CircleAvatar(
+          backgroundColor: lighten(Colors.pink, .2),
+          child: type ==  ChatMessageType.bot
+              ? Image.asset('assets/ChatGPT_logo.svg.png')
+              : Icon(Icons.person, color: Colors.white),
+        ),
+        SizedBox(width: 12),
+        Flexible(
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            margin: EdgeInsets.only(bottom: 8.0),
+            decoration:  BoxDecoration(
+              color: type ==  ChatMessageType.bot ? bgColor : Colors.white,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
+                  bottomLeft: Radius.circular(12)),
+            ),
+            child: Text("$chatText",
+            style: TextStyle(color: type ==  ChatMessageType.bot ? Colors.white : chatGptColor,
+            fontSize: 15.0,
+              fontWeight: type ==  ChatMessageType.bot ? FontWeight.w600 : FontWeight.w400,
+            ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 }

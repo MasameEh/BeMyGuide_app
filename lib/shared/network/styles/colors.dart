@@ -18,3 +18,6 @@ Color lighten(Color color, [double amount = .1]) {
 
   return hslLight.toColor();
 }
+
+const chatGptColor = Color(0xff343541);
+const bgColor = Color(0xff00967e);
