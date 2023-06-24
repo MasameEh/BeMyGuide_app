@@ -9,6 +9,7 @@ import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/modules/volunteer/volunteerfeatures_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
 import 'package:graduation_project/shared/components/constants.dart';
+import 'package:graduation_project/shared/network/TextToSpeech.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
 import 'package:graduation_project/shared/network/remote/dio_helper.dart';
 
@@ -22,6 +23,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
+  TextToSpeech.iniTts();
   Widget widget;
   var uId = CacheHelper.getData(key: 'uId');
   if(uId == null) {
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: SpeechScreen(),
+            home: LoginScreen(),
           );
         },
       ),

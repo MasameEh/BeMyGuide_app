@@ -28,7 +28,8 @@ class ApiServices {
       );
 
       if (res.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(res.body);
+        var decodedBody = utf8.decode(res.bodyBytes); // Specify UTF-8 encoding
+        Map<String, dynamic> data = jsonDecode(decodedBody);
         var message = data['choices'][0]['text'];
         print(message);
         return message;

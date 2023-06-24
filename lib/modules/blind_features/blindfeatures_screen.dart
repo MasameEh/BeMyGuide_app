@@ -1,6 +1,7 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/modules/speech/speechscreen.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -24,6 +25,7 @@ class BlindFeaturesScreen extends StatefulWidget {
 
 class _MyWidgetState extends State<BlindFeaturesScreen> {
 
+  bool ar = true;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
@@ -165,7 +167,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                           //   background: Colors.white,
                           // ),
                           SizedBox(
-                            height: 20.0,
+                            height: 15.0,
                           ),
                           GestureDetector(
                             onTap: (){
@@ -189,6 +191,78 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                     ),
                                     SizedBox(width: 7,),
                                     Text('Video Call',
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                          color: Color.fromARGB(255,180,31,87),
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              ar = true;
+                              navigateTo(context, SpeechScreen(ar: ar,));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.9,
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 7,),
+                                    Icon(Icons.video_call,
+                                      color: Colors.grey.withOpacity(.6),
+                                      size: 30,
+                                    ),
+                                    SizedBox(width: 7,),
+                                    Text('Chatgpt-AR',
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                          color: Color.fromARGB(255,180,31,87),
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              ar = false;
+                              navigateTo(context, SpeechScreen(ar: ar,));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.9,
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 7,),
+                                    Icon(Icons.video_call,
+                                      color: Colors.grey.withOpacity(.6),
+                                      size: 30,
+                                    ),
+                                    SizedBox(width: 7,),
+                                    Text('Chatgpt-EN',
                                         style: const TextStyle(
                                           fontSize: 25,
                                           color: Color.fromARGB(255,180,31,87),

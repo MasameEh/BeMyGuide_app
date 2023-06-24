@@ -54,6 +54,7 @@ dependencies:
   speech_to_text: ^6.1.1
   http: ^0.13.6
   chat_gpt_sdk: ^2.0.0
+  flutter_tts: ^3.7.0
 
 
 dev_dependencies:

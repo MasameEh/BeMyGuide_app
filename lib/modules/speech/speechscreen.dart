@@ -3,6 +3,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graduation_project/shared/network/TextToSpeech.dart';
 
 import 'package:graduation_project/shared/network/api_servcies.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -11,7 +12,11 @@ import '../../models/chat_model.dart';
 import '../../shared/network/styles/colors.dart';
 
 class SpeechScreen extends StatefulWidget {
-  const SpeechScreen({Key? key}) : super(key: key);
+  final bool ar;
+  const SpeechScreen({
+    Key? key,
+    required this.ar,
+  }) : super(key: key);
 
   @override
   State<SpeechScreen> createState() => _SpeechScreenState();
@@ -23,7 +28,9 @@ class _SpeechScreenState extends State<SpeechScreen> {
 
   final List<ChatMessage> messages = [];
 
-  String text = "Hold the button and start speaking";
+  String selectedLocaleId = '';
+
+  String text = "";
   bool isListening = false;
 
   var scrollController = ScrollController();
@@ -35,9 +42,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
   }
 
   @override
-  // void initState(){
-  //
-  // }
+  void initState(){
+    super.initState();
+    selectedLocaleId = (widget.ar == true) ? 'ar_SA' : 'en-US';
+    text = widget.ar ? "اضغط على الزر ثم ابدأ بالتحدث" : "Hold the button and start speaking";
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -60,6 +69,13 @@ class _SpeechScreenState extends State<SpeechScreen> {
                     isListening = true;
                   });
                   speechToText.listen(
+                    localeId: selectedLocaleId,
+                    // pauseFor: Duration(
+                    //   minutes: 1,
+                    // ),
+                    // listenFor: Duration(
+                    //   minutes: 1,
+                    // ),
                     onResult: (result) {
                       setState(() {
                         text = result.recognizedWords;
@@ -74,14 +90,25 @@ class _SpeechScreenState extends State<SpeechScreen> {
             setState(() {
               isListening = false;
             });
-            speechToText.stop();
+            await speechToText.stop();
 
-             messages.add(ChatMessage(text: text, type: ChatMessageType.user));
-             var msg =  await ApiServices.sendMessage(text);
-             print(msg);
-             setState(() {
-               messages.add(ChatMessage(text: msg, type: ChatMessageType.bot));
-             });
+            if(text.isNotEmpty && text != "Hold the button and start speaking"){
+              messages.add(ChatMessage(text: text, type: ChatMessageType.user));
+              var msg =  await ApiServices.sendMessage(text);
+              msg = msg?.trim();
+              print(msg);
+              setState(() {
+                messages.add(ChatMessage(text: msg, type: ChatMessageType.bot));
+              });
+
+              Future.delayed(Duration(milliseconds: 400),() {
+                TextToSpeech.speak(msg!);
+              },
+              );
+            }else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to process. Try again!")));
+            }
+
           },
           child: CircleAvatar(
             radius: 35,
@@ -93,7 +120,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
       appBar: AppBar(
         backgroundColor: lighten(Colors.pink, .2),
         centerTitle: true,
-        leading: Icon(Icons.sort_rounded,color: Colors.white),
+        leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+              },
+            icon: Icon(Icons.arrow_back_outlined, color: Colors.white)),
         title: const Text(
           ' Chatgbt Assistant'
         ),
@@ -135,6 +166,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           ),
       );
   }
+
   Widget chatBubble({
     required chatText,
     required ChatMessageType? type,
