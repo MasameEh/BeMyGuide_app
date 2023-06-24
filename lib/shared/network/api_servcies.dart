@@ -22,7 +22,7 @@ class ApiServices {
           "model": "text-davinci-003",
           "prompt": msg,
           "temperature": 0,
-          "max_tokens": 200,
+          "max_tokens": 2000,
           "top_p": 1,
         }),
       );
