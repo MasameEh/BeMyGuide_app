@@ -1,13 +1,9 @@
-// TODO Implement this library.
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
-
 import '../../shared/components/components.dart';
 import '../settings/settings_screen.dart';
 
@@ -114,7 +110,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
               height: 10,
             ),
             ElevatedButton(
-              onPressed: sendFiless,
+              onPressed: selectAndUploadFiles,
               child: Text('Send images'),
             ),
           ],
@@ -164,12 +160,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
   }
 
   //send files(more than one image)
-  Future<void> sendFiles() async {
-    final res = await FilePicker.platform.pickFiles(allowMultiple: true);
-    List<String>? filePath =
-    res!.files.map((e) => e.path).cast<String>().toList();
-    await Share.shareFiles(filePath, text: 'List of files');
-  }
+
   Future<void> sendFiless() async {
     final res = await FilePicker.platform.pickFiles(allowMultiple: true);
     if(res !=null){
@@ -178,8 +169,83 @@ class _MyWidgetState extends State<bluetoothScreen> {
       await Share.shareFiles(filePath, text: 'List of files');
     }
     else{
-
     }
   }
+  //upload image to API
+  void _uploadOneFile(File file) async {
+   String fileName = file.path.split('/').last;
+
+   FormData data = FormData.fromMap({
+      "file": await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      ),
+   });
+
+  Dio dio = new Dio();
+
+  dio.post("https://192.168.1.x/upload", data: data)
+  .then((response) => print(response))
+  .catchError((error) => print(error));
+}
+
+
+Future getImage() async {
+     File _image;
+     final picker = ImagePicker(); 
+
+    var _pickedFile = await picker.getImage(
+    source: ImageSource.camera,
+    imageQuality: 50, // <- Reduce Image quality
+    maxHeight: 500,  // <- reduce the image size
+    maxWidth: 500);
+
+   _image = _pickedFile!.path as File;
+
+
+  _uploadOneFile(_image);
+
+}
+ 
+//upload multi files to API
+  void _upload(List<File> files) async {
+  Dio dio = Dio();
+
+  for (File file in files) {
+    String fileName = file.path.split('/').last;
+
+    FormData data = FormData.fromMap({
+      "file": await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      ),
+    });
+
+    try {
+      Response response = await dio.post("https://192.168.1.x/upload", data: data);
+      print(response);
+    } catch (error) {
+      print(error);
+    }
+  }
+}
+void selectAndUploadFiles() async {
+  List<File> selectedFiles = [];
+
+  try {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+      type: FileType.custom, // Specify the file types you want to allow
+    );
+
+    if (result != null) {
+      selectedFiles = result.paths.map((path) => File(path!)).toList();
+      _upload(selectedFiles);
+    }
+  } catch (error) {
+    print('Error selecting files: $error');
+  }
+}
+
 
 }
