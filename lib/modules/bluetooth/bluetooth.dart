@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import '../../shared/components/components.dart';
 import '../settings/settings_screen.dart';
 
-
 class bluetoothScreen extends StatefulWidget {
   const bluetoothScreen({super.key});
 
