@@ -2,10 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
-import '../../shared/components/components.dart';
-import '../settings/settings_screen.dart';
 
 class bluetoothScreen extends StatefulWidget {
   const bluetoothScreen({super.key});
