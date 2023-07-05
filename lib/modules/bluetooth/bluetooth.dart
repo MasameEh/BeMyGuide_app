@@ -2,8 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
+
 import '../../shared/components/components.dart';
 import '../settings/settings_screen.dart';
 
@@ -15,237 +14,242 @@ class bluetoothScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<bluetoothScreen> {
-  File? _image;
-  final ImagePicker _picker = ImagePicker();
-  bool pwVisible = true;
-  var nameController = TextEditingController();
-  var pwController = TextEditingController();
-  SnackBar snackBar = SnackBar(
-    content: Text('missing name or passwoed'),
-  );
-  List<String> imagePaths = [];
-  List<String> imageNames = [];
+   File? selectedImage;
+//select image from gallery
+Future<void> selectImageFromGallery() async {
+  final imagePicker = ImagePicker();
+  final pickedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+  if (pickedImage != null) {
+    setState(() {
+      selectedImage = File(pickedImage.path);
+    });
+  }
+}
+//select image from Camera
+Future<void> selectImageFromCamera() async {
+  final imagePicker = ImagePicker();
+  final pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
+
+  if (pickedImage != null) {
+    setState(() {
+      selectedImage = File(pickedImage.path);
+    });
+  }
+}
+List<File> selectedImages = [];
+ Future<void> selectImages() async {
+    final imagePicker = ImagePicker();
+    final pickedImages = await imagePicker.pickMultiImage();
+
+    if (pickedImages != null) {
+      setState(() {
+        selectedImages = pickedImages.map((pickedImage) => File(pickedImage.path)).toList();
+      });
+    }
+  }
+/********************************* */
+void uploadPhoto(BuildContext context,String type) async {
+if(type=='gallery'){
+   await selectImageFromGallery();
+}
+else{
+  await selectImageFromCamera();
+}
+  if (selectedImage == null) {
+     SnackBar snackBar4 = SnackBar(content: Text('No Image selected'),duration: Duration(seconds: 5),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar4);
+    print('No image selected');
+    
+  }
+else{
+  Dio dio = Dio();
+
+  try {
+    FormData formData = FormData.fromMap({
+      'images': await MultipartFile.fromFile(selectedImage!.path),
+    });
+
+    Response response = await dio.post('https://2edb-45-242-56-239.ngrok-free.app/images', data: formData);
+
+    if (response.statusCode == 200) {
+      // Upload successful
+      SnackBar snackBar = SnackBar(content: Text('Photo uploaded successfully'),duration: Duration(seconds: 10),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      print('-****************Photo uploaded successfully');
+    } else {
+      // Upload failed
+      SnackBar snackBar2 = SnackBar(content: Text('Photo uploaded failed'),duration: Duration(seconds: 10),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar2);
+      print('Photo upload failed');
+    }
+  } catch (error) {
+    // Error occurred during the upload
+     SnackBar snackBar3 = SnackBar(content: Text('Error uploading photo: $error'),duration: Duration(seconds: 10),);
+     ScaffoldMessenger.of(context).showSnackBar(snackBar3);
+    print('Error uploading photo: $error');
+   
+  }
+}
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: IconButton(icon:Icon(Icons.arrow_back) ,
-        onPressed: () {
-          Navigator.pop(context);
-        },
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(
+              color: Colors.white, //
+            ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: 10.0,
+                ),
+                child: Container(
+                  width: 34.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.white.withOpacity(.3),
+                  ),
+                  child: IconButton(
+                      color: Colors.white,
+                      iconSize: 20,
+                      icon: Icon(Icons.settings),
+                      onPressed: () {
+                        navigateTo(context, Settings());
+                      },
+                ),
+              ),
+              ),
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/Home_background.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                    ),
+                    Text(
+                      'Glasses Conection',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 40,
+                          color: Colors.white),
+                    ),
+                   
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50)),
+                        color: Color.fromARGB(255, 250, 250, 250),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/gp-logo.png',
+                                scale: 6,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('BeMyGuide',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 180, 31, 87))),
+                            ],
+                          ),
+                         
+                          defaultButton(
+                            width: 330.0,
+                            radius: 20.0,
+                            height: 60.0,
+                            borderColor: Colors.black.withOpacity(.4),
+                            function: () {
+                             selectedImage = null;
+                            uploadPhoto(context, 'gallery');
+                            },
+                            textColor: Color.fromARGB(255, 180, 31, 87),
+                            text: 'Select photos from gallrey',
+                            background: Colors.white,
+                          ),
+                          SizedBox(height: 20,),
+                          defaultButton(
+                            width: 330.0,
+                            radius: 20.0,
+                            height: 60.0,
+                            borderColor: Colors.black.withOpacity(.4),
+                            function: () {
+                            selectedImage = null;
+                            uploadPhoto(context, 'camera');
+                            },
+                            textColor: Color.fromARGB(255, 180, 31, 87),
+                            text: 'Take Photo',
+                            background: Colors.white,
+                          ),
+                        
+                    
+                      Image.asset(
+                        'assets/Header.png',
+                        scale: 1,
+                        fit: BoxFit.fitHeight,
+                        opacity: AlwaysStoppedAnimation(.3),
+                      ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+    
+    
+    
+    
+    /* Scaffold(
+      appBar: AppBar(
+        title: Text('Glases Connection'),
       ),
-
-          title: Text('Blind page')),
-      body: SingleChildScrollView(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 10,
-            ),
-
-            //Share files
-
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('   wifi Name'),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: '   name',
-              ),
-              controller: nameController,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('   Passwod'),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: '   password',
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        pwVisible = !pwVisible;
-                      });
-                    },
-                    icon: pwVisible
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off)),
-              ),
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: pwVisible,
-              controller: pwController,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            //share text(name&password)
-            ElevatedButton(
-              onPressed: () {
-                if (nameController.text.isEmpty || pwController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                } else {
-                  Share.share('${nameController.text}\n${pwController.text}');
-                }
-              },
-              child: Text('send wifi name&password'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: selectAndUploadFiles,
-              child: Text('Send images'),
-            ),
+            ElevatedButton(onPressed: (){
+              selectedImage=null;
+              uploadPhoto(context,'gallery');
+            }, child: Text('Select photos from gallrey')),
+            ElevatedButton(onPressed: (){
+              selectedImage=null;
+              uploadPhoto(context,'camera');
+            }, child: Text('Take Photo')),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+    );*/
 
-          onTap: (index)
-          {
-            navigateTo(context, Settings());
-          },
-          items:[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ]
-      ),
-    );
   }
-// pick image from camera
-  void pickImageFromCamera() async {
-    var image = await _picker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-// pick image from gallery
-  void pickImageFromGallery() async {
-    var image = await _picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-// pick files
-  Future<List<String?>> pickFile() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
-
-    return result!.paths;
-  }
-
-//send images(only one image)
-  Future<void> sendImage() async {
-    final res = await ImagePicker().pickImage(source: ImageSource.gallery);
-    late String paths = res!.path;
-    await Share.shareFiles([paths], text: 'Image 1');
-  }
-
-  //send files(more than one image)
-
-  Future<void> sendFiless() async {
-    final res = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if(res !=null){
-      List<String>? filePath =
-      res.files.map((e) => e.path).cast<String>().toList();
-      await Share.shareFiles(filePath, text: 'List of files');
-    }
-    else{
-    }
-  }
-  //upload image to API
-  void _uploadOneFile(File file) async {
-   String fileName = file.path.split('/').last;
-
-   FormData data = FormData.fromMap({
-      "file": await MultipartFile.fromFile(
-        file.path,
-        filename: fileName,
-      ),
-   });
-
-  Dio dio = new Dio();
-
-  dio.post("https://192.168.1.x/upload", data: data)
-  .then((response) => print(response))
-  .catchError((error) => print(error));
-}
-
-
-Future getImage() async {
-     File _image;
-     final picker = ImagePicker(); 
-
-    var _pickedFile = await picker.getImage(
-    source: ImageSource.camera,
-    imageQuality: 50, // <- Reduce Image quality
-    maxHeight: 500,  // <- reduce the image size
-    maxWidth: 500);
-
-   _image = _pickedFile!.path as File;
-
-
-  _uploadOneFile(_image);
-
-}
- 
-//upload multi files to API
-  void _upload(List<File> files) async {
-  Dio dio = Dio();
-
-  for (File file in files) {
-    String fileName = file.path.split('/').last;
-
-    FormData data = FormData.fromMap({
-      "file": await MultipartFile.fromFile(
-        file.path,
-        filename: fileName,
-      ),
-    });
-
-    try {
-      Response response = await dio.post("https://192.168.1.x/upload", data: data);
-      print(response);
-    } catch (error) {
-      print(error);
-    }
-  }
-}
-void selectAndUploadFiles() async {
-  List<File> selectedFiles = [];
-
-  try {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      type: FileType.custom, // Specify the file types you want to allow
-    );
-
-    if (result != null) {
-      selectedFiles = result.paths.map((path) => File(path!)).toList();
-      _upload(selectedFiles);
-    }
-  } catch (error) {
-    print('Error selecting files: $error');
-  }
-}
-
-
+  
 }
