@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
 import 'package:graduation_project/modules/blind_features/blindfeatures_screen.dart';
+import 'package:graduation_project/modules/bluetooth/bluetooth.dart';
 import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/modules/volunteer/volunteerfeatures_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: startWidget,
+            home: bluetoothScreen(),
           );
         },
       ),
