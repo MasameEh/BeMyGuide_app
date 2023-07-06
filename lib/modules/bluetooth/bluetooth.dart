@@ -224,31 +224,7 @@ else{
             ),
           ),
         );
-    
-    
-    
-    
-    /* Scaffold(
-      appBar: AppBar(
-        title: Text('Glases Connection'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(onPressed: (){
-              selectedImage=null;
-              uploadPhoto(context,'gallery');
-            }, child: Text('Select photos from gallrey')),
-            ElevatedButton(onPressed: (){
-              selectedImage=null;
-              uploadPhoto(context,'camera');
-            }, child: Text('Take Photo')),
-          ],
-        ),
-      ),
-    );*/
+
 
   }
   
