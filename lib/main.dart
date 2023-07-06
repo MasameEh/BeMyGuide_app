@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            home: bluetoothScreen(),
+            home: startWidget,
           );
         },
       ),
