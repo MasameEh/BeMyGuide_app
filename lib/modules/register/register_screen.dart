@@ -3,6 +3,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/modules/register/cubit/cubit.dart';
 import 'package:graduation_project/modules/register/cubit/states.dart';
 
@@ -103,14 +104,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               fit: BoxFit.fitHeight,
                               height: MediaQuery.of(context).size.height*.35,),
                             Text("Sign Up",
-                              style:  TextStyle(
+                              style: GoogleFonts.acme(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40.0,
+                                fontSize: 45.0,
                               ),
                             ),
                             SizedBox(
-                              height: 20.0,
+                              height: 15.0,
                             ),
                             Container(
                               width: double.infinity,
@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 20.0,
+                                      height: 18.0,
                                     ),
                                     defaultFormField(
                                       controller: nameController,
@@ -141,7 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       prefix: Icons.person,
                                     ),
                                     SizedBox(
-                                      height: 20.0,
+                                      height: 15.0,
                                     ),
                                       defaultFormField(
                                       controller: emailAddressController,
@@ -156,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       prefix: Icons.email_rounded,
                                     ),
                                     SizedBox(
-                                      height: 20.0,
+                                      height: 15.0,
                                     ),
                                     defaultFormField(
                                       controller: passwordController,

@@ -138,12 +138,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Row(
                                 children: [
                                   SizedBox(width: 7,),
-                                  Icon(Icons.bluetooth,
+                                  Icon(Icons.person,
                                     color: Colors.grey.withOpacity(.6),
                                     size: 30,
                                   ),
                                   SizedBox(width: 7,),
-                                  Text('Bluetooth',
+                                  Text('Send a pic',
                                       style: const TextStyle(
                                         fontSize: 25,
                                         color: Color.fromARGB(255,180,31,87),

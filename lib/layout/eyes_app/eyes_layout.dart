@@ -156,6 +156,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                             },
                             textColor: Color.fromARGB(255, 180, 31, 87),
                             text: 'Assistant',
+                            fontSize: 30.0,
                             background: Colors.white,
                           ),
                           SizedBox(
@@ -174,6 +175,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                             borderColor: Colors.black.withOpacity(.4),
                             textColor: Color.fromARGB(255, 180, 31, 87),
                             text: 'Volunteer',
+                            fontSize: 30.0,
                             background: Colors.white,
                           ),
                           Image.asset(

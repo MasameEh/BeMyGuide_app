@@ -96,7 +96,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
               messages.add(ChatMessage(text: text, type: ChatMessageType.user));
               var msg =  await ApiServices.sendMessage(text);
               msg = msg?.trim();
-              print(msg);
+              // print(msg);
               setState(() {
                 messages.add(ChatMessage(text: msg, type: ChatMessageType.bot));
               });

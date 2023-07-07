@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../modules/login/login_screen.dart';
 import '../network/local/cache_helper.dart';
@@ -15,6 +16,7 @@ Widget defaultButton({
   double radius = 4.0,
   Color textColor = Colors.white,
   Color borderColor = Colors.white,
+  double fontSize = 25.0
 }) =>
     Container(
       width: width,
@@ -25,10 +27,9 @@ Widget defaultButton({
         },
         child: Text(
           text,
-          style: TextStyle(
-            fontSize: 25.0,
+          style: GoogleFonts.acme(
             color: textColor,
-            fontWeight: FontWeight.bold,
+            fontSize: fontSize,
           ),
         ),
       ),

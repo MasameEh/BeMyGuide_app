@@ -48,6 +48,7 @@ dependencies:
   http: ^0.13.6
   chat_gpt_sdk: ^2.0.0
   flutter_tts: ^3.7.0
+  google_fonts: ^4.0.4
 
 
 dev_dependencies:

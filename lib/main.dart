@@ -62,7 +62,6 @@ class MyApp extends StatelessWidget {
                 iconTheme: IconThemeData(
                   color: Colors.black,
                 ),
-                backwardsCompatibility: false,
                 elevation: 0.0,
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.transparent,

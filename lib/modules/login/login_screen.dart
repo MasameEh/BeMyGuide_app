@@ -3,8 +3,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
+import 'package:graduation_project/modules/forgotpass/forgotpassScreen.dart';
 import 'package:graduation_project/modules/login/cubit/cubit.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
@@ -45,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if(state is AppLoginErrorState)
             {
               showToast(
-                  text: state.error,
+                  text: 'Wrong UserName or Password',
                   state: ToastStates.ERROR,
               );
             }
@@ -92,11 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               scale:2,
                               fit: BoxFit.fitHeight,
                               height: MediaQuery.of(context).size.height*.35,),
-                            Text("Sign In",
-                              style:  TextStyle(
+                            Text("Log In",
+                              style:  GoogleFonts.acme(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40.0,
+                                fontSize: 45.0,
                               ),
                             ),
                             SizedBox(
@@ -146,6 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         validate: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'please enter your password';
+                                          } else if (value.length < 6) {
+                                            return 'Password must be at least 6 characters';
                                           }
                                           return null;
                                         },
@@ -177,10 +180,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                           },
                                           width: 150.0,
                                           radius: 40.0,
-                                          text: 'Sign In' ,
+                                          text: 'Log In' ,
                                           background: lighten(Colors.pink, .2),
                                         ),
                                         fallback: (context) => Center(child: CircularProgressIndicator()),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          navigateTo(context, ForgotPassword(),);
+                                        },
+                                        child: Text(
+                                          'Forgot Password?',
+                                          style: TextStyle(
+                                            decoration: TextDecoration.underline,
+                                            fontWeight: FontWeight.w600,
+                                            color: darken(Colors.blue, .2),
+                                          ),
+                                        ),
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -194,8 +210,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                               navigateTo(context, RegisterScreen(),);
                                             },
                                             child: Text(
-                                              'SIGN UP',
-                                              style: TextStyle(
+                                              'Sign Up',
+                                              style:
+                                              TextStyle(
+                                                decoration: TextDecoration.underline,
                                                 fontWeight: FontWeight.w600,
                                                 color: darken(Colors.blue, .2),
                                               ),
