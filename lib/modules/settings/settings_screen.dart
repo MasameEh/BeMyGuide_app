@@ -128,6 +128,7 @@ class Settings extends StatelessWidget {
                                       }
                                       return null;
                                     },
+                                    Readable: true,
                                     label: 'Email Address',
                                     prefix: Icons.email_outlined,
                                   ),

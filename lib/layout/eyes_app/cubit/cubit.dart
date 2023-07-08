@@ -50,6 +50,7 @@ class AppCubit extends Cubit<AppStates> {
         .then((value) {
       getUserData();
     }).catchError((error) {
+      print(error.toString());
       emit(AppUserUpdateErrorState());
     });
   }

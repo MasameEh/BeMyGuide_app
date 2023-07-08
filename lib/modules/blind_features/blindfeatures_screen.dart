@@ -1,6 +1,7 @@
 // TODO Implement this library.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/modules/speech/speechscreen.dart';
 import 'package:graduation_project/modules/video_Call/join_screen.dart';
 import 'dart:io';
@@ -149,13 +150,18 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                     const SizedBox(
                                       width: 7,
                                     ),
-                                    const Text('Send a pic',
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          color:
-                                              Color.fromARGB(255, 180, 31, 87),
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                     Text('Send a pic',
+                                      style:  GoogleFonts.acme(
+                                        color: Color.fromARGB(255, 180, 31, 87),
+                                        fontSize: 30.0,
+                                      ),
+                                     ),
+                                        // style: TextStyle(
+                                        //   fontSize: 25,
+                                        //   color:
+                                        //       Color.fromARGB(255, 180, 31, 87),
+                                        //   fontWeight: FontWeight.bold,
+                                        // )),
                                   ],
                                 ),
                               ),
@@ -203,13 +209,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                     const SizedBox(
                                       width: 7,
                                     ),
-                                    const Text('Video Call',
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          color:
-                                              Color.fromARGB(255, 180, 31, 87),
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                     Text('Video Call',
+                                         style:  GoogleFonts.acme(
+                                        color: Color.fromARGB(255, 180, 31, 87),
+                                fontSize: 30.0,
+                              ),
+                            ),
                                   ],
                                 ),
                               ),
@@ -250,13 +255,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                     const SizedBox(
                                       width: 7,
                                     ),
-                                    const Text('Chatgpt-AR',
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          color:
-                                              Color.fromARGB(255, 180, 31, 87),
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                     Text('Chatgpt-AR',
+                                       style:  GoogleFonts.acme(
+                                         color: Color.fromARGB(255, 180, 31, 87),
+                                         fontSize: 30.0,
+                                       ),
+                                     ),
                                   ],
                                 ),
                               ),
@@ -297,13 +301,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                     const SizedBox(
                                       width: 7,
                                     ),
-                                    const Text('Chatgpt-EN',
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          color:
-                                              Color.fromARGB(255, 180, 31, 87),
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                     Text('Chatgpt-EN',
+                                      style:  GoogleFonts.acme(
+                                        color: Color.fromARGB(255, 180, 31, 87),
+                                        fontSize: 30.0,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
