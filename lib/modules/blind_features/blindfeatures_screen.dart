@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/modules/speech/speechscreen.dart';
+import 'package:graduation_project/modules/video_Call/join_screen.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -24,7 +25,6 @@ class BlindFeaturesScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<BlindFeaturesScreen> {
-
   bool ar = true;
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
           ),
           body: SingleChildScrollView(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Home_background.png'),
                   fit: BoxFit.fill,
@@ -76,14 +76,14 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.15,
                     ),
-                    Text(
+                    const Text(
                       'Assistant',
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
                     ),
-                    Text(
+                    const Text(
                       'Mode',
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
@@ -95,7 +95,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                     ),
                     Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(50),
                             topRight: Radius.circular(50)),
@@ -112,10 +112,10 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                 'assets/gp-logo.png',
                                 scale: 6,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text('BeMyGuide',
+                              const Text('BeMyGuide',
                                   style: TextStyle(
                                       fontSize: 25.0,
                                       fontWeight: FontWeight.bold,
@@ -123,36 +123,43 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                             ],
                           ),
                           GestureDetector(
-                            onTap: (){
-                              navigateTo(context, bluetoothScreen());
+                            onTap: () {
+                              navigateTo(context, const bluetoothScreen());
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.9,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               height: 60.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.white,
-                                  border: Border.all(color: Colors.black.withOpacity(.4)),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.4)),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Icon(
+                                      Icons.person,
+                                      color: Colors.grey.withOpacity(.6),
+                                      size: 30,
+                                    ),
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    const Text('Send a pic',
+                                        style: TextStyle(
+                                          fontSize: 25,
+                                          color:
+                                              Color.fromARGB(255, 180, 31, 87),
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ],
                                 ),
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 7,),
-                                  Icon(Icons.person,
-                                    color: Colors.grey.withOpacity(.6),
-                                    size: 30,
-                                  ),
-                                  SizedBox(width: 7,),
-                                  Text('Send a pic',
-                                      style: const TextStyle(
-                                        fontSize: 25,
-                                        color: Color.fromARGB(255,180,31,87),
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ],
                               ),
                             ),
-                          ),
                           ),
                           // defaultButton(
                           //   width: 300.0,
@@ -170,30 +177,37 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                             height: 15.0,
                           ),
                           GestureDetector(
-                            onTap: (){
-
+                            onTap: () {
+                              navigateTo(context, JoinScreen());
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.9,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               height: 60.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
-                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.4)),
                               ),
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(width: 7,),
-                                    Icon(Icons.video_call,
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Icon(
+                                      Icons.video_call,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
-                                    SizedBox(width: 7,),
-                                    Text('Video Call',
-                                        style: const TextStyle(
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    const Text('Video Call',
+                                        style: TextStyle(
                                           fontSize: 25,
-                                          color: Color.fromARGB(255,180,31,87),
+                                          color:
+                                              Color.fromARGB(255, 180, 31, 87),
                                           fontWeight: FontWeight.bold,
                                         )),
                                   ],
@@ -201,35 +215,46 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               ar = true;
-                              navigateTo(context, SpeechScreen(ar: ar,));
+                              navigateTo(
+                                  context,
+                                  SpeechScreen(
+                                    ar: ar,
+                                  ));
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.9,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               height: 60.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
-                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.4)),
                               ),
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(width: 7,),
-                                    Icon(Icons.video_call,
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Icon(
+                                      Icons.video_call,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
-                                    SizedBox(width: 7,),
-                                    Text('Chatgpt-AR',
-                                        style: const TextStyle(
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    const Text('Chatgpt-AR',
+                                        style: TextStyle(
                                           fontSize: 25,
-                                          color: Color.fromARGB(255,180,31,87),
+                                          color:
+                                              Color.fromARGB(255, 180, 31, 87),
                                           fontWeight: FontWeight.bold,
                                         )),
                                   ],
@@ -237,35 +262,46 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               ar = false;
-                              navigateTo(context, SpeechScreen(ar: ar,));
+                              navigateTo(
+                                  context,
+                                  SpeechScreen(
+                                    ar: ar,
+                                  ));
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.9,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               height: 60.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
-                                border: Border.all(color: Colors.black.withOpacity(.4)),
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.4)),
                               ),
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(width: 7,),
-                                    Icon(Icons.video_call,
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Icon(
+                                      Icons.video_call,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
-                                    SizedBox(width: 7,),
-                                    Text('Chatgpt-EN',
-                                        style: const TextStyle(
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    const Text('Chatgpt-EN',
+                                        style: TextStyle(
                                           fontSize: 25,
-                                          color: Color.fromARGB(255,180,31,87),
+                                          color:
+                                              Color.fromARGB(255, 180, 31, 87),
                                           fontWeight: FontWeight.bold,
                                         )),
                                   ],
