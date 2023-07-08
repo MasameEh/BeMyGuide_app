@@ -18,17 +18,39 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   void userLogin({
     required String email,
     required String password,
-  }) {
+  }) async {
     emit(AppLoginLoadingState());
-    FirebaseAuth.instance
+
+   try{
+     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(
         email: email,
         password: password,
-    ).then((value) {
-      emit(AppLoginSuccessState(value.user?.uid));
-    }).catchError((error){
-      emit(AppLoginErrorState(error.toString()));
-    });
+    );
+
+      emit(AppLoginSuccessState(user.user?.uid));
+    } on FirebaseAuthException catch (e){
+
+    String error ='';
+
+    if(e.code == 'wrong-password') {
+      error = 'Incorrect password. Please try again.';
+    } else if(e.code == 'network-request-failed') {
+      error = 'No Internet Connection';
+    } else if(e.code == 'user-not-found') {
+      error = 'User not found. Please check your email or sign up for a new account.';
+    } else if(e.code == 'too-many-requests') {
+      error = 'Too many attempts please try later';
+    } else if(e.code == 'unknown') {
+      error = 'Email and Password Fields are required';
+    } else if(e.code == 'invalid-email') {
+      error = 'Invalid email address. Please enter a valid email.';
+    } else {
+      error = e.code.toString();
+    }
+     emit(AppLoginErrorState(error));
+   }
+
   }
 
 }

@@ -18,24 +18,24 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     required String password,
     required String name,
     required String phone,
-  }) {
+  }) async {
     emit(AppRegisterLoadingState());
 
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    ).then((value) {
-      userCreate(
-        email: email ,
-        name: name,
-        phone: phone ,
-        uId: value.user?.uid ,
+    try {
+      UserCredential user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-
-
-    }).catchError((error){
-    emit(AppRegisterErrorState(error.toString()));
-    });
+      userCreate(
+        email: email,
+        name: name,
+        phone: phone,
+        uId: user.user?.uid,
+      );
+    } on FirebaseAuthException catch (e) {
+      emit(AppRegisterErrorState(e.message.toString()));
+    }
   }
 
   void userCreate({

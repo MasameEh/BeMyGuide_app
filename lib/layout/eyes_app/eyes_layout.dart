@@ -19,6 +19,7 @@ class EyesLayout extends StatefulWidget {
 }
 
 class _EyesLayoutState extends State<EyesLayout> {
+
   void submit() {
     CacheHelper.saveData(
       key: 'isBlind',
@@ -59,29 +60,6 @@ class _EyesLayoutState extends State<EyesLayout> {
             iconTheme: IconThemeData(
               color: Colors.white, //
             ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                  vertical: 10.0,
-                ),
-                child: Container(
-                  width: 34.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.white.withOpacity(.3),
-                  ),
-                  child: IconButton(
-                      color: Colors.white,
-                      iconSize: 20,
-                      icon: Icon(Icons.settings),
-                      onPressed: () {
-                        navigateTo(context, Settings());
-                      },
-                ),
-              ),
-              ),
-            ],
           ),
           body: SingleChildScrollView(
             child: Container(

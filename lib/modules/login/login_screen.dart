@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if(state is AppLoginErrorState)
             {
               showToast(
-                  text: 'Wrong UserName or Password',
+                  text: state.error,
                   state: ToastStates.ERROR,
               );
             }
