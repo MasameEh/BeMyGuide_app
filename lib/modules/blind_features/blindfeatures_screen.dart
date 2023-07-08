@@ -2,19 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/modules/speech/speechscreen.dart';
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
-
 import '../../layout/eyes_app/cubit/cubit.dart';
 import '../../layout/eyes_app/cubit/states.dart';
 import '../../shared/components/components.dart';
 import '../bluetooth/bluetooth.dart';
 import '../settings/settings_screen.dart';
+import 'text_recognation_screen.dart';
 
 class BlindFeaturesScreen extends StatefulWidget {
   const BlindFeaturesScreen({super.key});
@@ -138,12 +131,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Row(
                                 children: [
                                   SizedBox(width: 7,),
-                                  Icon(Icons.bluetooth,
+                                  Icon(Icons.wifi,
                                     color: Colors.grey.withOpacity(.6),
                                     size: 30,
                                   ),
                                   SizedBox(width: 7,),
-                                  Text('Bluetooth',
+                                  Text('Glasses Connection',
                                       style: const TextStyle(
                                         fontSize: 25,
                                         color: Color.fromARGB(255,180,31,87),
@@ -154,18 +147,41 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                             ),
                           ),
                           ),
-                          // defaultButton(
-                          //   width: 300.0,
-                          //   radius: 20.0,
-                          //   height: 60.0,
-                          //   borderColor: Colors.black,
-                          //   function: () {
-                          //     navigateTo(context, bluetoothScreen());
-                          //   },
-                          //   textColor: Color.fromARGB(255, 180, 31, 87),
-                          //   text: 'Bluetooth',
-                          //   background: Colors.white,
-                          // ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              navigateTo(context, TextRecognation());
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.9,
+                              height: 60.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black.withOpacity(.4)),
+                                ),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SizedBox(width: 7,),
+                                  Icon(Icons.text_fields,
+                                    color: Colors.grey.withOpacity(.6),
+                                    size: 30,
+                                  ),
+                                  SizedBox(width: 7,),
+                                  Text('Text Recognition',
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        color: Color.fromARGB(255,180,31,87),
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ),
+                          ),
                           SizedBox(
                             height: 15.0,
                           ),
@@ -221,7 +237,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                 child: Row(
                                   children: [
                                     SizedBox(width: 7,),
-                                    Icon(Icons.video_call,
+                                    Icon(Icons.chat_bubble_outline,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
@@ -257,7 +273,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                 child: Row(
                                   children: [
                                     SizedBox(width: 7,),
-                                    Icon(Icons.video_call,
+                                    Icon(Icons.chat_bubble_outline,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),

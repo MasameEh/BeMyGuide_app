@@ -48,6 +48,8 @@ dependencies:
   http: ^0.13.6
   chat_gpt_sdk: ^2.0.0
   flutter_tts: ^3.7.0
+  firebase_ml_model_downloader: ^0.2.3+3
+  google_ml_kit: ^0.7.3
 
 
 dev_dependencies:
