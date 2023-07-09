@@ -16,7 +16,7 @@ class _TextRecognationState extends State<TextRecognation> {
 
   XFile? imageFile;
 
-  String scannedText = "";
+  String scannedText = " ";
 
   @override
   Widget build(BuildContext context) {
