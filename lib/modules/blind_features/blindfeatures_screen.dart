@@ -5,13 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/modules/speech/speechscreen.dart';
 import 'package:graduation_project/modules/video_Call/join_screen.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
 
 import '../../layout/eyes_app/cubit/cubit.dart';
 import '../../layout/eyes_app/cubit/states.dart';
@@ -39,12 +32,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white, //
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 10.0,
                   vertical: 10.0,
                 ),
@@ -57,7 +50,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                   child: IconButton(
                     color: Colors.white,
                     iconSize: 20,
-                    icon: Icon(Icons.settings),
+                    icon: const Icon(Icons.settings),
                     onPressed: () {
                       navigateTo(context, Settings());
                     },
@@ -107,7 +100,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10.0,
                           ),
                           Row(
@@ -165,12 +158,12 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           GestureDetector(
                             onTap: () {
-                              navigateTo(context, TextRecognation());
+                              navigateTo(context, const TextRecognation());
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.9,
@@ -184,7 +177,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 7,
                                     ),
                                     Icon(
@@ -192,13 +185,13 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 7,
                                     ),
                                     Text(
-                                      'Text Recognition',
+                                      'Text Recognation',
                                       style: GoogleFonts.acme(
-                                        color: Color.fromARGB(255, 180, 31, 87),
+                                        color: const Color.fromARGB(255, 180, 31, 87),
                                         fontSize: 30.0,
                                       ),
                                     )
@@ -207,7 +200,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           GestureDetector(
@@ -226,7 +219,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 7,
                                     ),
                                     Icon(
@@ -273,7 +266,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 7,
                                     ),
                                     Icon(
@@ -320,7 +313,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 7,
                                     ),
                                     Icon(
@@ -386,7 +379,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                             'assets/Header.png',
                             scale: 1,
                             fit: BoxFit.fitHeight,
-                            opacity: AlwaysStoppedAnimation(.3),
+                            opacity: const AlwaysStoppedAnimation(.3),
                           ),
                         ],
                       ),

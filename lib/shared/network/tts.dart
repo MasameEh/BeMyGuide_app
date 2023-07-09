@@ -14,7 +14,7 @@ class TtsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Text To Speech"),
+        title: const Text("Text To Speech"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class TtsScreen extends StatelessWidget {
               onPressed: (){
                 TextToSpeech.speak(textController.text);
               } ,
-              child: Text("Speak"),
+              child: const Text("Speak"),
           ),
         ],
       ),

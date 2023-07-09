@@ -14,11 +14,11 @@ class AppLocale {
   }
 
   Future loadLang() async {
-    String _langFile =
+    String langFile =
         await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
-    Map<String, dynamic> _loadedValues = jsonDecode(_langFile);
+    Map<String, dynamic> loadedValues = jsonDecode(langFile);
     _loadedLocalizedValues =
-        _loadedValues.map((key, value) => MapEntry(key, value.toString()));
+        loadedValues.map((key, value) => MapEntry(key, value.toString()));
   }
 
   String? getTranslated(String key) {

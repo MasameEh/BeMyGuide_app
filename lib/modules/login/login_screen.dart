@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           if (state is AppLoginSuccessState) {
             CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-              navigateAndFinish(context, EyesLayout());
+              navigateAndFinish(context, const EyesLayout());
             });
           }
           if (state is AppLoginErrorState) {
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return Scaffold(
             body: SingleChildScrollView(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/SignUp.png'),
                     fit: BoxFit.fill,
@@ -95,12 +95,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 45.0,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20.0,
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(40),
                                 topRight: Radius.circular(40)),
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.all(30.0),
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 20.0,
                                 ),
                                 defaultFormField(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   label: "${getLang(context, 'Email Address')}",
                                   prefix: Icons.email_rounded,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20.0,
                                 ),
                                 defaultFormField(
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .changePasswordVisibility();
                                   },
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15.0,
                                 ),
                                 ConditionalBuilder(
@@ -175,14 +175,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     text: "${getLang(context, 'Log In')}",
                                     background: lighten(Colors.pink, .2),
                                   ),
-                                  fallback: (context) => Center(
+                                  fallback: (context) => const Center(
                                       child: CircularProgressIndicator()),
                                 ),
                                 TextButton(
                                   onPressed: () {
                                     navigateTo(
                                       context,
-                                      ForgotPassword(),
+                                      const ForgotPassword(),
                                     );
                                   },
                                   child: Text(
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   children: [
                                     Text(
                                       "${getLang(context, "message")}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       onPressed: () {
                                         navigateTo(
                                           context,
-                                          RegisterScreen(),
+                                          const RegisterScreen(),
                                         );
                                       },
                                       child: Text(

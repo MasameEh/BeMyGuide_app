@@ -41,7 +41,7 @@ class VolunteerJoinScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, //
         ),
       ),
@@ -116,14 +116,14 @@ class VolunteerJoinScreen extends StatelessWidget {
                           ),
                           controller: _meetingIdController,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         //Joining the meeting as viewer
                         ElevatedButton(
                             onPressed: () =>
                                 onJoinButtonPressed(context, Mode.VIEWER),
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromARGB(255, 180, 31, 87)),
+                                  const Color.fromARGB(255, 180, 31, 87)),
                             ),
                             child: Text(
                                 "${getLang(context, 'Join Meeting as Viewer')}")),
@@ -132,7 +132,7 @@ class VolunteerJoinScreen extends StatelessWidget {
                           'assets/Header.png',
                           scale: 1,
                           fit: BoxFit.fitHeight,
-                          opacity: AlwaysStoppedAnimation(.3),
+                          opacity: const AlwaysStoppedAnimation(.3),
                         ),
                       ],
                     ),

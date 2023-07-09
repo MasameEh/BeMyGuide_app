@@ -58,7 +58,7 @@ class JoinScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, //
         ),
       ),
@@ -128,7 +128,7 @@ class JoinScreen extends StatelessWidget {
                           onPressed: () => onCreateButtonPressed(context),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 180, 31, 87)),
+                                const Color.fromARGB(255, 180, 31, 87)),
                           ),
                           child: Text("${getLang(context, 'Create Meeting')}"),
                         ),
@@ -137,19 +137,19 @@ class JoinScreen extends StatelessWidget {
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
-                            border: OutlineInputBorder(),
-                            hintStyle: TextStyle(color: Colors.grey),
+                            border: const OutlineInputBorder(),
+                            hintStyle: const TextStyle(color: Colors.grey),
                           ),
                           controller: _meetingIdController,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         //Joining the meeting as viewer
                         ElevatedButton(
                           onPressed: () =>
                               onJoinButtonPressed(context, Mode.VIEWER),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 180, 31, 87)),
+                                const Color.fromARGB(255, 180, 31, 87)),
                           ),
                           child: Text(
                               "${getLang(context, 'Join Meeting as Viewer')}"),
@@ -158,7 +158,7 @@ class JoinScreen extends StatelessWidget {
                           'assets/Header.png',
                           scale: 1,
                           fit: BoxFit.fitHeight,
-                          opacity: AlwaysStoppedAnimation(.3),
+                          opacity: const AlwaysStoppedAnimation(.3),
                         ),
                       ],
                     ),

@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/modules/register/cubit/cubit.dart';
 import 'package:graduation_project/modules/register/cubit/states.dart';
@@ -13,6 +12,8 @@ import '../../shared/network/local/cache_helper.dart';
 import '../../shared/network/styles/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -34,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           if (state is AppCreateUserSuccessState) {
             CacheHelper.saveData(key: 'uId', value: state.uId);
-            navigateAndFinish(context, EyesLayout());
+            navigateAndFinish(context, const EyesLayout());
             // if(state.loginModel.status == true)
             // {
             //   print(state.loginModel.message);
@@ -71,21 +72,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
             extendBodyBehindAppBar: true,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
-              iconTheme: IconThemeData(
+              iconTheme: const IconThemeData(
                 color: Colors.white, //
               ),
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back_outlined),
+                icon: const Icon(Icons.arrow_back_outlined),
               ),
             ),
             body: SingleChildScrollView(
               child: Form(
                 key: formKey,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/SignUp.png'),
                       fit: BoxFit.fill,
@@ -107,12 +108,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 45.0,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(40),
                                 topRight: Radius.circular(40)),
@@ -122,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             padding: const EdgeInsets.all(30.0),
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 18.0,
                                 ),
                                 defaultFormField(
@@ -137,7 +138,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'User Name')}",
                                   prefix: Icons.person,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -152,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'Email Address')}",
                                   prefix: Icons.email_rounded,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -187,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         .changePasswordVisibility();
                                   },
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -202,7 +203,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'Phone Number')}",
                                   prefix: Icons.phone,
                                 ),
-                                SizedBox(height: 15.0),
+                                const SizedBox(height: 15.0),
                                 ConditionalBuilder(
                                   condition: state is! AppRegisterLoadingState,
                                   builder: (context) => defaultButton(
@@ -222,7 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     radius: 40.0,
                                     background: lighten(Colors.pink, .2),
                                   ),
-                                  fallback: (context) => Center(
+                                  fallback: (context) => const Center(
                                       child: CircularProgressIndicator()),
                                 ),
                               ],

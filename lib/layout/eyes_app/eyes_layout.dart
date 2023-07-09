@@ -28,7 +28,7 @@ class _EyesLayoutState extends State<EyesLayout> {
       if (value) {
         navigateAndFinish(
           context,
-          BlindFeaturesScreen(),
+          const BlindFeaturesScreen(),
         );
       }
     });
@@ -57,12 +57,12 @@ class _EyesLayoutState extends State<EyesLayout> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white, //
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 10.0,
                   vertical: 10.0,
                 ),
@@ -75,7 +75,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                   child: IconButton(
                     color: Colors.white,
                     iconSize: 20,
-                    icon: Icon(Icons.settings),
+                    icon: const Icon(Icons.settings),
                     onPressed: () {
                       navigateTo(context, Settings());
                     },
@@ -86,7 +86,7 @@ class _EyesLayoutState extends State<EyesLayout> {
           ),
           body: SingleChildScrollView(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/Home_background.png'),
                   fit: BoxFit.fill,
@@ -100,14 +100,14 @@ class _EyesLayoutState extends State<EyesLayout> {
                     ),
                     Text(
                       "${getLang(context, "title1")}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
                     ),
                     Text(
                       "${getLang(context, "title2")}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
@@ -117,7 +117,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                     ),
                     Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(50),
                             topRight: Radius.circular(50)),
@@ -125,7 +125,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10.0,
                           ),
                           Row(
@@ -134,10 +134,10 @@ class _EyesLayoutState extends State<EyesLayout> {
                                 'assets/gp-logo.png',
                                 scale: 6,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text('BeMyGuide',
+                              const Text('BeMyGuide',
                                   style: TextStyle(
                                       fontSize: 25.0,
                                       fontWeight: FontWeight.bold,
@@ -155,12 +155,12 @@ class _EyesLayoutState extends State<EyesLayout> {
                                   key: 'isBlind', value: false);
                               AppCubit.get(context).getUserData();
                             },
-                            textColor: Color.fromARGB(255, 180, 31, 87),
+                            textColor: const Color.fromARGB(255, 180, 31, 87),
                             text: "${getLang(context, "title3")}",
                             fontSize: 30.0,
                             background: Colors.white,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20.0,
                           ),
                           defaultButton(
@@ -174,7 +174,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                               AppCubit.get(context).getUserData();
                             },
                             borderColor: Colors.black.withOpacity(.4),
-                            textColor: Color.fromARGB(255, 180, 31, 87),
+                            textColor: const Color.fromARGB(255, 180, 31, 87),
                             text: "${getLang(context, "title4")}",
                             fontSize: 30.0,
                             background: Colors.white,
@@ -183,7 +183,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                             'assets/Header.png',
                             scale: 1,
                             fit: BoxFit.fitHeight,
-                            opacity: AlwaysStoppedAnimation(.3),
+                            opacity: const AlwaysStoppedAnimation(.3),
                           ),
                         ],
                       ),

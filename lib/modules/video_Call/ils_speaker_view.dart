@@ -30,11 +30,11 @@ class _ILSSpeakerViewState extends State<ILSSpeakerView> {
     participants.putIfAbsent(
         widget.room.localParticipant.id, () => widget.room.localParticipant);
     //filtering the CONFERENCE participants to be shown in the grid
-    widget.room.participants.values.forEach((participant) {
+    for (var participant in widget.room.participants.values) {
       if (participant.mode == Mode.CONFERENCE) {
         participants.putIfAbsent(participant.id, () => participant);
       }
-    });
+    }
     hlsState = widget.room.hlsState;
   }
 
@@ -71,7 +71,7 @@ class _ILSSpeakerViewState extends State<ILSSpeakerView> {
               ElevatedButton(
                 onPressed: () => {
                   widget.room.leave(),
-                  navigateTo(context, BlindFeaturesScreen())
+                  navigateTo(context, const BlindFeaturesScreen())
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

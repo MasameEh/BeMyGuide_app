@@ -46,15 +46,13 @@ class _MyWidgetState extends State<bluetoothScreen> {
     final imagePicker = ImagePicker();
     final pickedImages = await imagePicker.pickMultiImage();
 
-    if (pickedImages != null) {
-      setState(() {
-        selectedImages =
-            pickedImages.map((pickedImage) => File(pickedImage.path)).toList();
-      });
-    }
+    setState(() {
+      selectedImages =
+          pickedImages.map((pickedImage) => File(pickedImage.path)).toList();
+    });
   }
 
-/********************************* */
+/// *******************************
   void uploadPhoto(BuildContext context, String type) async {
     if (type == 'gallery') {
       await selectImageFromGallery();
@@ -65,7 +63,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
       SnackBar snackBar4 = SnackBar(
         // ignore: use_build_context_synchronously
         content: Text("${getLang(context, 'No Image selected')}"),
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar4);
       print('No image selected');
@@ -86,7 +84,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
           SnackBar snackBar = SnackBar(
             // ignore: use_build_context_synchronously
             content: Text("${getLang(context, 'Photo uploaded successfully')}"),
-            duration: Duration(seconds: 10),
+            duration: const Duration(seconds: 10),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print('-****************Photo uploaded successfully');
@@ -95,7 +93,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
           SnackBar snackBar2 = SnackBar(
             // ignore: use_build_context_synchronously
             content: Text("${getLang(context, 'Photo uploaded failed')}"),
-            duration: Duration(seconds: 10),
+            duration: const Duration(seconds: 10),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar2);
           print('Photo upload failed');
@@ -104,7 +102,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
         // Error occurred during the upload
         SnackBar snackBar3 = SnackBar(
           content: Text('Error uploading photo: $error'),
-          duration: Duration(seconds: 10),
+          duration: const Duration(seconds: 10),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar3);
         print('Error uploading photo: $error');
@@ -118,12 +116,12 @@ class _MyWidgetState extends State<bluetoothScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, //
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 10.0,
               vertical: 10.0,
             ),
@@ -136,7 +134,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
               child: IconButton(
                 color: Colors.white,
                 iconSize: 20,
-                icon: Icon(Icons.settings),
+                icon: const Icon(Icons.settings),
                 onPressed: () {
                   navigateTo(context, Settings());
                 },
@@ -147,7 +145,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/Home_background.png'),
               fit: BoxFit.fill,
@@ -161,7 +159,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
                 ),
                 Text(
                   "${getLang(context, 'Glasses Connection')}",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 40,
                       color: Colors.white),
@@ -171,7 +169,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
                 ),
                 Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                         topRight: Radius.circular(50)),
@@ -179,7 +177,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       Row(
@@ -188,10 +186,10 @@ class _MyWidgetState extends State<bluetoothScreen> {
                             'assets/gp-logo.png',
                             scale: 6,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text('BeMyGuide',
+                          const Text('BeMyGuide',
                               style: TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -208,12 +206,12 @@ class _MyWidgetState extends State<bluetoothScreen> {
                           uploadPhoto(
                               context, "${getLang(context, 'gallery')}");
                         },
-                        textColor: Color.fromARGB(255, 180, 31, 87),
+                        textColor: const Color.fromARGB(255, 180, 31, 87),
                         text:
                             "${getLang(context, 'Select photos from gallery')}",
                         background: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       defaultButton(
@@ -225,7 +223,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
                           selectedImage = null;
                           uploadPhoto(context, "${getLang(context, 'camera')}");
                         },
-                        textColor: Color.fromARGB(255, 180, 31, 87),
+                        textColor: const Color.fromARGB(255, 180, 31, 87),
                         text: "${getLang(context, 'Take Photo')}",
                         background: Colors.white,
                       ),
@@ -233,7 +231,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
                         'assets/Header.png',
                         scale: 1,
                         fit: BoxFit.fitHeight,
-                        opacity: AlwaysStoppedAnimation(.3),
+                        opacity: const AlwaysStoppedAnimation(.3),
                       ),
                     ],
                   ),

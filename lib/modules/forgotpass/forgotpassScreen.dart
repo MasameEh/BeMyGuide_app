@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../shared/components/components.dart';
 import '../../shared/components/localization/app_local.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -23,15 +21,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Padding(
-          padding: EdgeInsets.only(right: 30.0),
+          padding: const EdgeInsets.only(right: 30.0),
           child: Text("${getLang(context, "Reset Your Password")}"),
         ),
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, //
         ),
         leading: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 10.0,
             vertical: 10.0,
           ),
@@ -46,7 +44,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_outlined),
+              icon: const Icon(Icons.arrow_back_outlined),
             ),
           ),
         ),
@@ -79,13 +77,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 child: TextFormField(
                   controller: emailController,
                   cursorColor: Colors.white,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: "${getLang(context, 'Email Address')}",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.white54,
                     ),
                   ),
@@ -110,7 +108,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               //
               //   prefix: Icons.email_rounded,
               // ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Padding(
@@ -120,13 +118,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size.fromHeight(50),
+                    minimumSize: const Size.fromHeight(50),
                     backgroundColor: Colors.green[400],
                   ),
                   onPressed: () {
                     resetPass();
                   },
-                  icon: Icon(Icons.email_outlined),
+                  icon: const Icon(Icons.email_outlined),
                   label: Text(
                     "${getLang(context, 'Reset Password')}",
                     style: GoogleFonts.acme(
@@ -147,7 +145,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
+      builder: (context) => const Center(
         child: CircularProgressIndicator(),
       ),
     );
@@ -156,7 +154,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text.trim());
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Password Reset Email Sent")));
+          .showSnackBar(const SnackBar(content: Text("Password Reset Email Sent")));
       Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       print(e);

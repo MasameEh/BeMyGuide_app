@@ -1,9 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
 import 'package:graduation_project/shared/network/TextToSpeech.dart';
 
@@ -49,6 +47,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         : "Hold the button and start speaking";
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -58,7 +57,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         duration: const Duration(milliseconds: 2000),
         glowColor: lighten(Colors.pink, .2),
         repeat: true,
-        repeatPauseDuration: Duration(milliseconds: 2000),
+        repeatPauseDuration: const Duration(milliseconds: 2000),
         showTwoGlows: true,
         child: GestureDetector(
           onTapDown: (details) async {
@@ -103,7 +102,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
               });
 
               Future.delayed(
-                Duration(milliseconds: 400),
+                const Duration(milliseconds: 400),
                 () {
                   TextToSpeech.speak(msg!);
                 },
@@ -129,7 +128,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_outlined, color: Colors.white)),
+            icon: const Icon(Icons.arrow_back_outlined, color: Colors.white)),
         title: Text("${getLang(context, ' ChatGPT Assistant')}"),
       ),
       body: Container(
@@ -190,11 +189,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
               ? Image.asset('assets/ChatGPT_logo.svg.png')
               : const Icon(Icons.person, color: Colors.white),
         ),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Flexible(
           child: Container(
-            padding: EdgeInsets.all(12.0),
-            margin: EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.all(12.0),
+            margin: const EdgeInsets.only(bottom: 8.0),
             decoration: BoxDecoration(
               color: type == ChatMessageType.bot ? bgColor : Colors.white,
               borderRadius: const BorderRadius.only(

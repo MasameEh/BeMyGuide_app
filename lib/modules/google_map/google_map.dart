@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
 
-import '../../shared/components/components.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
   const GoogleMapsScreen({Key? key}) : super(key: key);
@@ -29,8 +27,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
       AwesomeDialog(
           context: context,
           title: "services",
-          body: Text("Services Not Enabled"))
-        ..show();
+          body: const Text("Services Not Enabled"))
+        .show();
     }
     per = await Geolocator.checkPermission();
     if (per == LocationPermission.denied) {
@@ -69,19 +67,19 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 180, 31, 87),
+        backgroundColor: const Color.fromARGB(255, 180, 31, 87),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_outlined, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_outlined, color: Colors.white),
         ),
         title: Text("${getLang(context, "feature5")}"),
       ),
       body: Column(
         children: [
           _kGooglePlex == null
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : GoogleMap(
                   mapType: MapType.normal,
                   initialCameraPosition: _kGooglePlex,
