@@ -5,27 +5,10 @@ import '../../shared/components/localization/app_local.dart';
 import '../../shared/network/video_call_api.dart';
 import 'ils_screen.dart';
 
-class JoinScreen extends StatelessWidget {
+class VolunteerJoinScreen extends StatelessWidget {
   final _meetingIdController = TextEditingController();
 
-  JoinScreen({super.key});
-
-  //Creates new Meeting Id and joins it in CONFERNCE mode.
-  void onCreateButtonPressed(BuildContext context) async {
-    // call api to create meeting and navigate to ILSScreen with meetingId,token and mode
-    await createMeeting().then((meetingId) {
-      if (!context.mounted) return;
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ILSScreen(
-            meetingId: meetingId,
-            token: token,
-            mode: Mode.CONFERENCE,
-          ),
-        ),
-      );
-    });
-  }
+  VolunteerJoinScreen({super.key});
 
   //Join the provided meeting with given Mode and meetingId
   void onJoinButtonPressed(BuildContext context, Mode mode) {
@@ -124,36 +107,27 @@ class JoinScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        ElevatedButton(
-                          onPressed: () => onCreateButtonPressed(context),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 180, 31, 87)),
-                          ),
-                          child: Text("${getLang(context, 'Create Meeting')}"),
-                        ),
-                        const SizedBox(height: 20),
                         TextField(
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
-                            border: OutlineInputBorder(),
-                            hintStyle: TextStyle(color: Colors.grey),
+                            border: const OutlineInputBorder(),
+                            hintStyle: const TextStyle(color: Colors.grey),
                           ),
                           controller: _meetingIdController,
                         ),
                         SizedBox(height: 20),
                         //Joining the meeting as viewer
                         ElevatedButton(
-                          onPressed: () =>
-                              onJoinButtonPressed(context, Mode.VIEWER),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 180, 31, 87)),
-                          ),
-                          child: Text(
-                              "${getLang(context, 'Join Meeting as Viewer')}"),
-                        ),
+                            onPressed: () =>
+                                onJoinButtonPressed(context, Mode.VIEWER),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Color.fromARGB(255, 180, 31, 87)),
+                            ),
+                            child: Text(
+                                "${getLang(context, 'Join Meeting as Viewer')}")),
+
                         Image.asset(
                           'assets/Header.png',
                           scale: 1,

@@ -1,0 +1,71 @@
+{
+    "eyeLayoutScreen":"--comment--",
+    "title1" : "اختر" ,
+    "title2" : "الوضع",
+    "title3" : "مساعد",
+    "title4" : "متطوع",
+
+    "BlindFeaturesScreen" : "--comment--",
+    "headLine1" : "وضع",
+    "headLine2" : "المساعد",
+    "feature1" : "إرسال صورة",
+    "feature2" : "مكالمة ڤيديو",
+    "feature3" : "شات جي بي تي بالعربي",
+    "feature4" : "شات جي بي تي بالإنجليزية",
+    "feature5" : "خرائط جوجل",
+
+    "BluetoothScreen" : "--comment--",
+    "Glasses Connection" :"إتصال النظارة",
+    "Select photos from gallery" :"إختيار صورة من معرض الصور ",
+    "Take Photo":"إالتقاط صورة",
+    "gallery" :"معرض الصور",
+    "camera" : "الكاميرا",
+    "No Image selected" : "لم يتم تحديد صورة",
+    "Photo uploaded successfully":"تم تحميل الصورة بنجاح",
+    "Photo uploaded failed":"فشل تحميل الصورة",
+    
+
+    " ForgotPassword " : "--comment--",
+    "Reset Your Password" : "إعادة تعيين كلمة المرور الخاصة بك",
+    "Receive an email to\n reset your password.":"تلقي بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك",
+    "Email Address":"البريد الإلكتروني",
+    "please enter your email address":"الرجاء إدخال عنوان البريد الإلكتروني الخاص بك",
+    "Reset Password":"إعادة تعيين كلمة المرور",
+
+    "LoginScreen" : "--comment--" ,
+    "Wrong UserName or Password":"اسم مستخدم أو كلمة مرور خاطئة",
+    "Log In":"تسجيل الدخول",
+    "please enter your password":"الرجاء إدخال كلمة المرور الخاصة بك",
+    "Password must be at least 6 characters":"يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+    "Password":"كلمة المرور",
+    "Forgot Password?":"نسيت كلمة المرور؟",
+    "message":"ليس لديك حساب؟",
+    "Sign Up":"إنشاء حساب",
+
+    "register Screen" : "--comment--",
+    "please enter your name":"من فضلك ادخل اسمك" ,
+    "User Name":"اسم المستخدم",
+    "please enter your phone number":"الرجاء إدخال رقم هاتفك",
+    "Phone Number":"رقم الهاتف",
+
+    "sitting screen":"--comment--",
+    "Settings" : "الاعدادات" ,
+    "update" :"تحديث",
+
+    "speech screen":"---comment--",
+    "ChatGPT Assistant":"مساعد ChatGPT",
+    "Hold the button and start speaking":"اضغط مع الاستمرار على الزر وابدأ التحدث",
+    "Failed to process. Try again!":"فشل في المعالجة. حاول مرة أخرى!",
+
+    "Volunteer Screen" : "--comment--",
+    "h1":"وضع",
+    "h2":"التطوع",
+
+    "join Screen":"--comment--",
+    "Please enter valid meeting id" : "الرجاء إدخال معرف اجتماع صحيح",
+    "Create Meeting" : "إنشاء اجتماع",
+    "Enter Meeting Id":"أدخل معرف الاجتماع",
+    "Join Meeting as Viewer" :"الانضمام إلى الاجتماع كمشاهد"
+
+
+}

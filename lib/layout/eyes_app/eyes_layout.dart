@@ -4,6 +4,7 @@ import 'package:graduation_project/layout/eyes_app/cubit/cubit.dart';
 import 'package:graduation_project/layout/eyes_app/cubit/states.dart';
 
 import 'package:graduation_project/shared/components/components.dart';
+import 'package:graduation_project/shared/components/localization/app_local.dart';
 
 import '../../modules/blind_features/blindfeatures_screen.dart';
 
@@ -19,7 +20,6 @@ class EyesLayout extends StatefulWidget {
 }
 
 class _EyesLayoutState extends State<EyesLayout> {
-
   void submit() {
     CacheHelper.saveData(
       key: 'isBlind',
@@ -60,6 +60,29 @@ class _EyesLayoutState extends State<EyesLayout> {
             iconTheme: IconThemeData(
               color: Colors.white, //
             ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: 10.0,
+                ),
+                child: Container(
+                  width: 34.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.white.withOpacity(.3),
+                  ),
+                  child: IconButton(
+                    color: Colors.white,
+                    iconSize: 20,
+                    icon: Icon(Icons.settings),
+                    onPressed: () {
+                      navigateTo(context, Settings());
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -76,14 +99,14 @@ class _EyesLayoutState extends State<EyesLayout> {
                       height: MediaQuery.of(context).size.height * 0.15,
                     ),
                     Text(
-                      'Choose The',
+                      "${getLang(context, "title1")}",
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
                     ),
                     Text(
-                      'Mode',
+                      "${getLang(context, "title2")}",
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
@@ -133,7 +156,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                               AppCubit.get(context).getUserData();
                             },
                             textColor: Color.fromARGB(255, 180, 31, 87),
-                            text: 'Assistant',
+                            text: "${getLang(context, "title3")}",
                             fontSize: 30.0,
                             background: Colors.white,
                           ),
@@ -152,7 +175,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                             },
                             borderColor: Colors.black.withOpacity(.4),
                             textColor: Color.fromARGB(255, 180, 31, 87),
-                            text: 'Volunteer',
+                            text: "${getLang(context, "title4")}",
                             fontSize: 30.0,
                             background: Colors.white,
                           ),

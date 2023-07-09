@@ -52,6 +52,16 @@ dependencies:
   videosdk: ^1.1.3
   flutter_vlc_player: ^7.2.0
   google_ml_kit: ^0.7.3
+  flutter_localizations :
+    sdk: flutter 
+  localization: ^2.1.0
+  google_maps_flutter: ^2.3.1
+  geolocator: ^7.6.0 
+  
+  awesome_dialog: ^3.1.0
+  
+
+
 
 
 dev_dependencies:
@@ -85,6 +95,7 @@ flutter:
     - assets/Home_background.png
     - assets/Header.png
     - assets/ChatGPT_logo.svg.png
+    - assets/lang/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

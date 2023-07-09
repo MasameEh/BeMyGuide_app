@@ -1,22 +1,17 @@
-
 import '../../../models/login_model.dart';
 
+abstract class AppRegisterStates {}
 
-abstract class AppRegisterStates{}
+class AppRegisterInitialState extends AppRegisterStates {}
 
-class AppRegisterInitialState extends AppRegisterStates{}
+class AppRegisterLoadingState extends AppRegisterStates {}
 
-class AppRegisterLoadingState extends AppRegisterStates{}
+class AppRegisterSuccessState extends AppRegisterStates {}
 
-class AppRegisterSuccessState extends AppRegisterStates{}
-
-class AppRegisterErrorState extends AppRegisterStates
-{
-   late String error;
+class AppRegisterErrorState extends AppRegisterStates {
+  late String error;
   AppRegisterErrorState(this.error);
 }
-
-
 
 class AppCreateUserSuccessState extends AppRegisterStates {
   final String? uId;
@@ -24,10 +19,9 @@ class AppCreateUserSuccessState extends AppRegisterStates {
   AppCreateUserSuccessState(this.uId);
 }
 
-class AppCreateUserErrorState extends AppRegisterStates
-{
+class AppCreateUserErrorState extends AppRegisterStates {
   late String error;
   AppCreateUserErrorState(this.error);
 }
 
-class AppRegsiterChangePasswordVisibilityState extends AppRegisterStates{}
+class AppRegsiterChangePasswordVisibilityState extends AppRegisterStates {}
