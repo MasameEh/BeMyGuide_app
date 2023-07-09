@@ -18,3 +18,4 @@ class AppLoginErrorState extends AppLoginStates
    final String error;
   AppLoginErrorState(this.error);
 }
+class AppChangePasswordVisibilityState extends AppLoginStates {}

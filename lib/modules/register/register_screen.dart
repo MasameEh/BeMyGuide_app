@@ -174,21 +174,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       },
                                       validate: (value) {
                                         if (value == null || value.isEmpty) {
-                                          return 'please enter your password';
+                                          return 'Please enter your password';
                                         }else if(value.length < 6){
-                                          return 'password is too short';
+                                          return 'Password is too short';
                                         }
                                         return null;
                                       },
                                       label: 'Password',
                                       prefix: Icons.lock_rounded,
-                                      isPassword: isPass,
-                                      suffix: isPass? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                      isPassword: AppRegisterCubit.get(context).isPass,
+                                      suffix: AppRegisterCubit.get(context).suffix,
                                       suffixPressed: ()
                                       {
-                                        setState(() {
-                                          isPass =! isPass;
-                                        });
+                                        AppRegisterCubit.get(context).changePasswordVisibility();
                                       },
                                     ),
                                     SizedBox(

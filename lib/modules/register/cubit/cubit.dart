@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/models/login_model.dart';
-
+import 'package:flutter/material.dart';
 import 'package:graduation_project/modules/register/cubit/states.dart';
 
 
@@ -62,4 +62,16 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
       emit(AppCreateUserErrorState(error.toString()));
     });
   }
+
+  bool isPass = true;
+  IconData suffix = Icons.visibility_outlined;
+
+  void changePasswordVisibility()
+  {
+    isPass = !isPass;
+    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+
+    emit(AppRegsiterChangePasswordVisibilityState());
+  }
+
 }

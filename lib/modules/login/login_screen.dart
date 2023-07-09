@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var emailAddressController = TextEditingController();
   var passwordController = TextEditingController();
-  bool isPass = true;
+
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         },
                                         validate: (value) {
                                           if (value == null || value.isEmpty) {
-                                            return 'please enter your password';
+                                            return 'Please enter your password';
                                           } else if (value.length < 6) {
                                             return 'Password must be at least 6 characters';
                                           }
@@ -154,13 +154,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                         },
                                         label: 'Password',
                                         prefix: Icons.lock_rounded,
-                                        isPassword: isPass,
-                                        suffix: isPass? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                        isPassword: AppLoginCubit.get(context).isPass,
+                                        suffix: AppLoginCubit.get(context).suffix,
                                         suffixPressed: ()
                                         {
-                                          setState(() {
-                                            isPass =! isPass;
-                                          });
+                                          AppLoginCubit.get(context).changePasswordVisibility();
                                         },
                                       ),
                                       SizedBox(

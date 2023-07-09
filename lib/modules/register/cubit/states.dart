@@ -2,13 +2,13 @@
 import '../../../models/login_model.dart';
 
 
-abstract class AppRegisterStates {}
+abstract class AppRegisterStates{}
 
 class AppRegisterInitialState extends AppRegisterStates{}
 
 class AppRegisterLoadingState extends AppRegisterStates{}
 
-class AppRegisterSuccessState extends AppRegisterStates {}
+class AppRegisterSuccessState extends AppRegisterStates{}
 
 class AppRegisterErrorState extends AppRegisterStates
 {
@@ -29,3 +29,5 @@ class AppCreateUserErrorState extends AppRegisterStates
   late String error;
   AppCreateUserErrorState(this.error);
 }
+
+class AppRegsiterChangePasswordVisibilityState extends AppRegisterStates{}

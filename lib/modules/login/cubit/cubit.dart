@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
 import '../../../models/login_model.dart';
+import 'package:flutter/material.dart';
 
 
 
@@ -12,6 +12,9 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
   AppLoginCubit() : super(AppLoginInitialState());
 
   static AppLoginCubit get(context) => BlocProvider.of(context);
+
+  bool isPass = true;
+  IconData suffix = Icons.visibility_outlined;
 
   UserDataModel? userModel;
 
@@ -53,4 +56,12 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
 
   }
 
+  void changePasswordVisibility()
+  {
+    isPass = !isPass;
+    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+
+    emit(AppChangePasswordVisibilityState());
+  }
 }
+
