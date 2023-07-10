@@ -71,7 +71,7 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     isPass = !isPass;
     suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
 
-    emit(AppRegsiterChangePasswordVisibilityState());
+    emit(AppRegisterChangePasswordVisibilityState());
   }
 
 }

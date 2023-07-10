@@ -30,4 +30,4 @@ class AppCreateUserErrorState extends AppRegisterStates
   AppCreateUserErrorState(this.error);
 }
 
-class AppRegsiterChangePasswordVisibilityState extends AppRegisterStates{}
+class AppRegisterChangePasswordVisibilityState extends AppRegisterStates{}

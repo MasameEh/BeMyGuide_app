@@ -92,7 +92,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             });
             await speechToText.stop();
 
-            if(text.isNotEmpty && text != "Hold the button and start speaking"){
+            if(text.isNotEmpty && text != "Hold the button and start speaking" && text != "اضغط على الزر ثم ابدأ بالتحدث" ){
               messages.add(ChatMessage(text: text, type: ChatMessageType.user));
               var msg =  await ApiServices.sendMessage(text);
               msg = msg?.trim();
@@ -106,9 +106,9 @@ class _SpeechScreenState extends State<SpeechScreen> {
               },
               );
             }else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to process. Try again!")));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Failed to process. Try again!")));
             }
-
+            text = widget.ar ? "اضغط على الزر ثم ابدأ بالتحدث" : "Hold the button and start speaking";
           },
           child: CircleAvatar(
             radius: 35,

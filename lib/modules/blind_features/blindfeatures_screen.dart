@@ -259,7 +259,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                       width: 7,
                                     ),
                                     Icon(
-                                      Icons.video_call,
+                                      Icons.chat,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
@@ -305,7 +305,7 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                       width: 7,
                                     ),
                                     Icon(
-                                      Icons.video_call,
+                                      Icons.chat,
                                       color: Colors.grey.withOpacity(.6),
                                       size: 30,
                                     ),
