@@ -6,10 +6,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graduation_project/layout/eyes_app/eyes_layout.dart';
 import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
+import 'package:graduation_project/shared/components/constants.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
 import 'package:graduation_project/shared/network/TextToSpeech.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
 import 'package:graduation_project/shared/network/remote/dio_helper.dart';
+import 'package:path/path.dart';
 
 import 'layout/eyes_app/cubit/cubit.dart';
 import 'layout/eyes_app/cubit/states.dart';
@@ -24,9 +26,9 @@ void main() async {
   Widget widget;
   var uId = CacheHelper.getData(key: 'uId');
   if (uId == null) {
-    widget = const LoginScreen();
+    widget = LoginScreen();
   } else {
-    widget = const EyesLayout();
+    widget = EyesLayout();
   }
   // if(token == null) {
   //   widget = LoginScreen();
@@ -73,8 +75,8 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate
             ],
             supportedLocales: const [
-              Locale('en', 'US'),
-              Locale("ar", "EG"),
+              Locale('en', ''),
+              Locale('ar', ''),
             ],
             localeResolutionCallback: (currentLang, supportedLang) {
               if (currentLang != null) {
@@ -85,6 +87,15 @@ class MyApp extends StatelessWidget {
                 }
               }
               return supportedLang.first;
+            },
+            builder: (context, child) {
+              // Determine text direction based on the selected locale
+              final currentLocale = Localizations.localeOf(context);
+              final isRtl = currentLocale.languageCode == 'ar';
+              return Directionality(
+                textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+                child: child!,
+              );
             },
           );
         },

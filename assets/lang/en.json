@@ -8,16 +8,19 @@
     "BlindFeaturesScreen" : "--comment--",
     "headLine1" : "Assistant",
     "headLine2" : "Mode",
-    "feature1" : "Glasses Connection",
+    "feature1" : "Send a pic",
     "feature2" : "Video Call",
     "feature3" : "Chatgpt-AR",
     "feature4" : "Chatgpt-EN",
+    "feature5" : "Google Maps",
+    "feature6" : "Text Recognition",
+
 
     "BluetoothScreen" : "--comment--",
-    "Glasses Connection" :"Glasses Connection",
+    "Glasses Connection" :"Send a pic",
     "Select photos from gallery" :"Select photos from gallery",
     "Take Photo":"Take Photo",
-    "gallery" :"gallery",
+    "gallery" :"Gallery",
     "camera" : "camera",
     "No Image selected" : "No Image selected",
     "Photo uploaded successfully":"Photo uploaded successfully",
@@ -40,16 +43,19 @@
     "Forgot Password?":"Forgot Password?",
     "message":"Don't have an account?",
     "Sign Up":"Sign Up",
+    "button" : "Login",
 
     "register Screen" : "--comment--",
     "please enter your name":"please enter your name" ,
     "User Name":"User Name",
     "please enter your phone number":"please enter your phone number",
     "Phone Number":"Phone Number",
+    "b2" : "Sign Up",
 
     "sitting screen":"--comment--",
     "Settings" : "Settings" ,
     "update" :"Update",
+    "Sign out" : "Sign out",
 
     "speech screen":"---comment--",
     "ChatGPT Assistant":"ChatGPT Assistant",
@@ -64,8 +70,20 @@
     "Please enter valid meeting id" : "Please enter valid meeting id",
     "Create Meeting" : "Create Meeting",
     "Enter Meeting Id":"Enter Meeting Id",
-    "Join Meeting as Viewer" :"Join Meeting as Viewer"
+    "Join Meeting as Viewer" :"Join Meeting as Viewer",
 
+
+    "Text Recognition screen" : "--comment--",
+    "Text Recognition" :"Text Recognition" ,
+    "Image contents" :"Image contents",
+    "Read" :"Read",
+    "Pause":"Pause",
+    "error" : "Error occurred while scanning",
+    
+    "google":"comment",
+    "back" :"Back to the previous screen Features",
+    "m1" : "You are currently at ",
+    "bak" : "Back"
 
 
 

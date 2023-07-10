@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/modules/register/cubit/cubit.dart';
 import 'package:graduation_project/modules/register/cubit/states.dart';
+import 'package:graduation_project/shared/components/localization/app_local.dart';
 
 import '../../layout/eyes_app/eyes_layout.dart';
 import '../../shared/components/components.dart';
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           if (state is AppCreateUserSuccessState) {
             CacheHelper.saveData(key: 'uId', value: state.uId);
-            navigateAndFinish(context, const EyesLayout());
+            navigateAndFinish(context, EyesLayout());
             // if(state.loginModel.status == true)
             // {
             //   print(state.loginModel.message);
@@ -86,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Form(
                 key: formKey,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/SignUp.png'),
                       fit: BoxFit.fill,
@@ -108,12 +109,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 45.0,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 15.0,
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(40),
                                 topRight: Radius.circular(40)),
@@ -123,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             padding: const EdgeInsets.all(30.0),
                             child: Column(
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   height: 18.0,
                                 ),
                                 defaultFormField(
@@ -138,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'User Name')}",
                                   prefix: Icons.person,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -153,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'Email Address')}",
                                   prefix: Icons.email_rounded,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -180,15 +181,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                   label: "${getLang(context, 'Password')}",
                                   prefix: Icons.lock_rounded,
-                                  isPassword:
-                                      AppRegisterCubit.get(context).isPass,
-                                  suffix: AppRegisterCubit.get(context).suffix,
+                                  isPassword: isPass,
+                                  suffix: isPass
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
                                   suffixPressed: () {
-                                    AppRegisterCubit.get(context)
-                                        .changePasswordVisibility();
+                                    setState(() {
+                                      isPass = !isPass;
+                                    });
                                   },
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 15.0,
                                 ),
                                 defaultFormField(
@@ -203,7 +206,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: "${getLang(context, 'Phone Number')}",
                                   prefix: Icons.phone,
                                 ),
-                                const SizedBox(height: 15.0),
+                                SizedBox(height: 15.0),
                                 ConditionalBuilder(
                                   condition: state is! AppRegisterLoadingState,
                                   builder: (context) => defaultButton(
@@ -218,12 +221,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         );
                                       }
                                     },
-                                    text: "${getLang(context, 'Sign up')}",
+                                    text: "${getLang(context, 'b2')}",
                                     width: 150.0,
                                     radius: 40.0,
                                     background: lighten(Colors.pink, .2),
                                   ),
-                                  fallback: (context) => const Center(
+                                  fallback: (context) => Center(
                                       child: CircularProgressIndicator()),
                                 ),
                               ],

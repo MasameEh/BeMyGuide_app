@@ -137,8 +137,8 @@ class JoinScreen extends StatelessWidget {
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
-                            border: const OutlineInputBorder(),
-                            hintStyle: const TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(),
+                            hintStyle: TextStyle(color: Colors.grey),
                           ),
                           controller: _meetingIdController,
                         ),

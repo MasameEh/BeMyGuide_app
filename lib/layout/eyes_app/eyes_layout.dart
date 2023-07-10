@@ -75,7 +75,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                   child: IconButton(
                     color: Colors.white,
                     iconSize: 20,
-                    icon: const Icon(Icons.settings),
+                    icon: Icon(Icons.settings),
                     onPressed: () {
                       navigateTo(context, Settings());
                     },
@@ -100,14 +100,14 @@ class _EyesLayoutState extends State<EyesLayout> {
                     ),
                     Text(
                       "${getLang(context, "title1")}",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
                     ),
                     Text(
                       "${getLang(context, "title2")}",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                           color: Colors.white),
@@ -155,7 +155,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                                   key: 'isBlind', value: false);
                               AppCubit.get(context).getUserData();
                             },
-                            textColor: const Color.fromARGB(255, 180, 31, 87),
+                            textColor: Color.fromARGB(255, 180, 31, 87),
                             text: "${getLang(context, "title3")}",
                             fontSize: 30.0,
                             background: Colors.white,
@@ -174,7 +174,7 @@ class _EyesLayoutState extends State<EyesLayout> {
                               AppCubit.get(context).getUserData();
                             },
                             borderColor: Colors.black.withOpacity(.4),
-                            textColor: const Color.fromARGB(255, 180, 31, 87),
+                            textColor: Color.fromARGB(255, 180, 31, 87),
                             text: "${getLang(context, "title4")}",
                             fontSize: 30.0,
                             background: Colors.white,

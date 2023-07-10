@@ -58,6 +58,16 @@ dependencies:
   google_maps_flutter: ^2.3.1
   geolocator: ^7.6.0 
   awesome_dialog: ^3.1.0
+  geocoding: ^2.1.0
+
+
+  
+  
+
+
+
+
+  
  
 dev_dependencies:
 
@@ -90,6 +100,7 @@ flutter:
     - assets/Home_background.png
     - assets/Header.png
     - assets/ChatGPT_logo.svg.png
+    - assets/lang/
     - assets/lang/
 
 

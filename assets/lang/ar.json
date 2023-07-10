@@ -8,16 +8,17 @@
     "BlindFeaturesScreen" : "--comment--",
     "headLine1" : "وضع",
     "headLine2" : "المساعد",
-    "feature1" : "الاتصال بالنظاره",
+    "feature1" : " إرسال صورة",
     "feature2" : "مكالمة ڤيديو",
     "feature3" : "شات جي بي تي بالعربي",
     "feature4" : "شات جي بي تي بالإنجليزية",
     "feature5" : "خرائط جوجل",
+    "feature6" : "التعرف على النص ",
 
     "BluetoothScreen" : "--comment--",
-    "Glasses Connection" :"إتصال النظارة",
+    "Glasses Connection" :"إرسال صورة",
     "Select photos from gallery" :"إختيار صورة من معرض الصور ",
-    "Take Photo":"إالتقاط صورة",
+    "Take Photo":"إلتقاط صورة",
     "gallery" :"معرض الصور",
     "camera" : "الكاميرا",
     "No Image selected" : "لم يتم تحديد صورة",
@@ -41,16 +42,20 @@
     "Forgot Password?":"نسيت كلمة المرور؟",
     "message":"ليس لديك حساب؟",
     "Sign Up":"إنشاء حساب",
+    "button" : "تسجيل",
+
 
     "register Screen" : "--comment--",
     "please enter your name":"من فضلك ادخل اسمك" ,
     "User Name":"اسم المستخدم",
     "please enter your phone number":"الرجاء إدخال رقم هاتفك",
     "Phone Number":"رقم الهاتف",
+    "b2" : "إنشاء",
 
     "sitting screen":"--comment--",
     "Settings" : "الاعدادات" ,
     "update" :"تحديث",
+    "Sign out" : "خروج",
 
     "speech screen":"---comment--",
     "ChatGPT Assistant":"مساعد ChatGPT",
@@ -65,7 +70,19 @@
     "Please enter valid meeting id" : "الرجاء إدخال معرف اجتماع صحيح",
     "Create Meeting" : "إنشاء اجتماع",
     "Enter Meeting Id":"أدخل معرف الاجتماع",
-    "Join Meeting as Viewer" :"الانضمام إلى الاجتماع كمشاهد"
+    "Join Meeting as Viewer" :"الانضمام إلى الاجتماع كمشاهد",
+
+    "Text Recognition screen" : "--comment--",
+    "Text Recognition" :"التعرف على النص" ,
+    "Image contents" :"محتوى الصورة",
+    "Read" :"اقرأ",
+    "Pause":"توقف",
+    "error" : "حدث خطأ أثناء العملية",
+
+    "google":"comment",
+    "back" :"الرجوع إلى الصفحة السابقة",
+    "m1" : "أنت الآن في ",
+    "bak" : "رجوع"
 
 
 }

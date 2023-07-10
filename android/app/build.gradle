@@ -55,6 +55,7 @@ android {
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndkVersion "25.1.8937393"
     }
 
     buildTypes {

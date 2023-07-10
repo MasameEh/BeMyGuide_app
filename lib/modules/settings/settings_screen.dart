@@ -14,8 +14,6 @@ class Settings extends StatelessWidget {
   var phoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  Settings({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
@@ -163,7 +161,7 @@ class Settings extends StatelessWidget {
                                 function: () {
                                   signOut(context);
                                 },
-                                text: 'Sign out',
+                                text: "${getLang(context, 'Sign out')}",
                                 width: 150.0,
                                 radius: 40.0,
                                 background: lighten(Colors.pink, .2),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../shared/components/localization/app_local.dart';
+
 class TextRecognation extends StatefulWidget {
   const TextRecognation({super.key});
 
@@ -17,16 +19,18 @@ class _TextRecognationState extends State<TextRecognation> {
   XFile? imageFile;
 
   String scannedText = " ";
-    final FlutterTts flutterTts =FlutterTts();
-
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  const Text("Text Recognation",style: TextStyle(fontSize: 30),),
-        backgroundColor: Colors.pink,
+        title: Text(
+          "${getLang(context, "Text Recognition")}",
+          style: TextStyle(fontSize: 30),
+        ),
+        backgroundColor: Color.fromARGB(255, 180, 31, 87),
       ),
       body: Center(
           child: SingleChildScrollView(
@@ -51,8 +55,9 @@ class _TextRecognationState extends State<TextRecognation> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
-                            shadowColor: Colors.pink[400],
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
+                            shadowColor: Color.fromARGB(255, 180, 31, 87),
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
@@ -69,10 +74,10 @@ class _TextRecognationState extends State<TextRecognation> {
                                 const Icon(
                                   Icons.image,
                                   size: 30,
-                                  color: Colors.pink,
+                                  color: Color.fromARGB(255, 180, 31, 87),
                                 ),
                                 Text(
-                                  "Gallery",
+                                  "${getLang(context, "gallery")}",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.grey[600]),
                                 )
@@ -85,8 +90,9 @@ class _TextRecognationState extends State<TextRecognation> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
-                            shadowColor: Colors.pink[400],
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
+                            shadowColor: Color.fromARGB(255, 180, 31, 87),
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
@@ -103,10 +109,10 @@ class _TextRecognationState extends State<TextRecognation> {
                                 const Icon(
                                   Icons.camera_alt,
                                   size: 30,
-                                  color: Colors.pink,
+                                  color: Color.fromARGB(255, 180, 31, 87),
                                 ),
                                 Text(
-                                  "Camera",
+                                  "${getLang(context, 'camera')}",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.grey[600]),
                                 )
@@ -116,36 +122,39 @@ class _TextRecognationState extends State<TextRecognation> {
                         )),
                   ],
                 ),
-               
-                
                 const SizedBox(
                   height: 20,
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      color: Colors.pink,
-                      width: 5
-                    )
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 180, 31, 87), width: 5)),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.pink,
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: Colors.pink,width: 3)
-                            ),
-                            child: Text('Image contents',style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),)),
+                              padding: EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 180, 31, 87),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border:
+                                      Border.all(color: Colors.pink, width: 3)),
+                              child: Text(
+                                "${getLang(context, 'Image contents')}",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
                         ],
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Text(
                         scannedText,
                         style: const TextStyle(fontSize: 20),
@@ -156,7 +165,7 @@ class _TextRecognationState extends State<TextRecognation> {
                 const SizedBox(
                   height: 20,
                 ),
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
@@ -164,8 +173,9 @@ class _TextRecognationState extends State<TextRecognation> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
-                            shadowColor: Colors.pink[400],
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
+                            shadowColor: Color.fromARGB(255, 180, 31, 87),
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
@@ -182,10 +192,10 @@ class _TextRecognationState extends State<TextRecognation> {
                                 const Icon(
                                   Icons.play_arrow_sharp,
                                   size: 30,
-                                  color: Colors.pink,
+                                  color: Color.fromARGB(255, 180, 31, 87),
                                 ),
                                 Text(
-                                  "Read",
+                                  "${getLang(context, "Read")}",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.grey[600]),
                                 )
@@ -198,14 +208,15 @@ class _TextRecognationState extends State<TextRecognation> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
-                            shadowColor: Colors.pink[400],
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
+                            shadowColor: Color.fromARGB(255, 180, 31, 87),
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
                           ),
                           onPressed: () {
-                           flutterTts.pause();
+                            flutterTts.pause();
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -216,10 +227,10 @@ class _TextRecognationState extends State<TextRecognation> {
                                 const Icon(
                                   Icons.pause,
                                   size: 30,
-                                  color: Colors.pink,
+                                  color: Color.fromARGB(255, 180, 31, 87),
                                 ),
                                 Text(
-                                  "Pause",
+                                  "${getLang(context, "Pause")}",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.grey[600]),
                                 )
@@ -247,7 +258,7 @@ class _TextRecognationState extends State<TextRecognation> {
     } catch (e) {
       textScanning = false;
       imageFile = null;
-	  scannedText = "Error occured while scanning";
+      scannedText = "${getLang(context, 'error')}";
       setState(() {});
     }
   }
@@ -266,16 +277,15 @@ class _TextRecognationState extends State<TextRecognation> {
     textScanning = false;
     setState(() {});
   }
-   speek ()async{
-   
-   await flutterTts.setLanguage('en-US');
+
+  speek() async {
+    await flutterTts.setLanguage('en-US');
     await flutterTts.setPitch(1);
     await flutterTts.setVolume(1);
     await flutterTts.setEngine('AndroidTtsEngine');
-     await flutterTts.awaitSpeakCompletion(true);
+    await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.speak(scannedText);
     await Future.delayed(Duration(seconds: 2));
-    
   }
 
   @override

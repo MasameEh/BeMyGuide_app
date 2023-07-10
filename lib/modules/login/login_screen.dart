@@ -8,6 +8,7 @@ import 'package:graduation_project/modules/forgotpass/forgotpassScreen.dart';
 import 'package:graduation_project/modules/login/cubit/cubit.dart';
 import 'package:graduation_project/modules/login/cubit/states.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
+import 'package:graduation_project/shared/components/localization/app_local.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
 
 import '../../shared/components/components.dart';
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     },
                                     width: 150.0,
                                     radius: 40.0,
-                                    text: "${getLang(context, 'Log In')}",
+                                    text: "${getLang(context, 'button')}",
                                     background: lighten(Colors.pink, .2),
                                   ),
                                   fallback: (context) => const Center(

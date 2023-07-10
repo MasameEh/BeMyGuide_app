@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
-
+import 'package:graduation_project/shared/network/TextToSpeech.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
   const GoogleMapsScreen({Key? key}) : super(key: key);
@@ -14,43 +15,68 @@ class GoogleMapsScreen extends StatefulWidget {
 }
 
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
-  Position? c1;
-  var long;
-  var lat;
-  late CameraPosition _kGooglePlex;
+  Position? currentPosition;
+  String? street;
+  String? city;
+  CameraPosition? initialCameraPosition;
+  Set<Marker> markers = {};
 
-  Future getPer() async {
-    bool services;
-    LocationPermission per;
-    services = await Geolocator.isLocationServiceEnabled();
-    if (services == false) {
+  Future<LocationPermission> checkLocationPermission() async {
+    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!isLocationServiceEnabled) {
       AwesomeDialog(
-          context: context,
-          title: "services",
-          body: const Text("Services Not Enabled"))
-        .show();
+        context: context,
+        title: "Services",
+        body: const Text("Location Services Not Enabled"),
+      ).show();
     }
-    per = await Geolocator.checkPermission();
-    if (per == LocationPermission.denied) {
-      per = await Geolocator.requestPermission();
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
     }
     print("==============================");
-    print(per);
+    print(permission);
     print("===============================");
-    return per;
+    return permission;
   }
 
-  Future<void> getLatAndLong() async {
-    c1 = await Geolocator.getCurrentPosition();
-    if (c1 != null) {
-      lat = c1!.latitude;
-      long = c1!.longitude;
-      _kGooglePlex = CameraPosition(
-        target: LatLng(lat, long),
-        zoom: 14.4746,
-      );
-      setState(() {});
+  Future<void> getStreetAndCity() async {
+    currentPosition = await Geolocator.getCurrentPosition();
+    if (currentPosition != null) {
+      double lat = currentPosition!.latitude;
+      double long = currentPosition!.longitude;
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(lat, long);
+      if (placemarks.isNotEmpty) {
+        Placemark placemark = placemarks.first;
+        street = placemark.street;
+        city = placemark.locality;
+        if (street != null && city != null) {
+          speak("${getLang(context, 'm1')} $street, $city");
+        } else {
+          speak('Could not determine your current location');
+        }
+
+        initialCameraPosition = CameraPosition(
+          target: LatLng(lat, long),
+          zoom: 14.0,
+        );
+
+        setState(() {
+          markers.add(
+            Marker(
+              markerId: MarkerId('currentLocation'),
+              position: LatLng(lat, long),
+            ),
+          );
+        });
+      }
     }
+  }
+
+  void speak(String text) {
+    TextToSpeech.speak(text); // Convert the given text to speech
   }
 
   final Completer<GoogleMapController> _controller =
@@ -58,9 +84,10 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   @override
   void initState() {
-    getLatAndLong();
-    getPer();
     super.initState();
+    checkLocationPermission();
+    getStreetAndCity();
+    TextToSpeech.iniTts();
   }
 
   @override
@@ -78,15 +105,35 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
       ),
       body: Column(
         children: [
-          _kGooglePlex == null
-              ? const CircularProgressIndicator()
-              : GoogleMap(
-                  mapType: MapType.normal,
-                  initialCameraPosition: _kGooglePlex,
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                ),
+          if (initialCameraPosition == null)
+            CircularProgressIndicator()
+          else
+            Container(
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: initialCameraPosition!,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                markers: markers,
+                myLocationEnabled: true,
+                myLocationButtonEnabled: true,
+              ),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width,
+            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              speak(
+                  "${getLang(context, 'back')}"); // Trigger the voice-over when the back button is tapped
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 180, 31, 87)),
+            ),
+            child: Text("${getLang(context, 'bak')}"),
+          ),
         ],
       ),
     );

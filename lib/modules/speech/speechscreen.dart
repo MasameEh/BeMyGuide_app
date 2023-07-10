@@ -2,6 +2,7 @@
 
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
 import 'package:graduation_project/shared/network/TextToSpeech.dart';
 
@@ -47,7 +48,6 @@ class _SpeechScreenState extends State<SpeechScreen> {
         : "Hold the button and start speaking";
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -57,7 +57,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         duration: const Duration(milliseconds: 2000),
         glowColor: lighten(Colors.pink, .2),
         repeat: true,
-        repeatPauseDuration: const Duration(milliseconds: 2000),
+        repeatPauseDuration: Duration(milliseconds: 2000),
         showTwoGlows: true,
         child: GestureDetector(
           onTapDown: (details) async {
@@ -91,8 +91,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             await speechToText.stop();
 
             if (text.isNotEmpty &&
-                text !=
-                    "${getLang(context, "Hold the button and start speaking")}") {
+                text != "Hold the button and start speaking") {
               messages.add(ChatMessage(text: text, type: ChatMessageType.user));
               var msg = await ApiServices.sendMessage(text);
               msg = msg?.trim();
@@ -102,15 +101,14 @@ class _SpeechScreenState extends State<SpeechScreen> {
               });
 
               Future.delayed(
-                const Duration(milliseconds: 400),
+                Duration(milliseconds: 400),
                 () {
                   TextToSpeech.speak(msg!);
                 },
               );
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(
-                      "${getLang(context, "Failed to process. Try again!")}")));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Failed to process. Try again!")));
             }
           },
           child: CircleAvatar(
@@ -122,15 +120,14 @@ class _SpeechScreenState extends State<SpeechScreen> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: lighten(Colors.pink, .2),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_outlined, color: Colors.white)),
-        title: Text("${getLang(context, ' ChatGPT Assistant')}"),
-      ),
+          backgroundColor: lighten(Colors.pink, .2),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_outlined, color: Colors.white)),
+          title: Text(' ChatGPT Assistant')),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         child: Column(
@@ -192,8 +189,8 @@ class _SpeechScreenState extends State<SpeechScreen> {
         const SizedBox(width: 12),
         Flexible(
           child: Container(
-            padding: const EdgeInsets.all(12.0),
-            margin: const EdgeInsets.only(bottom: 8.0),
+            padding: EdgeInsets.all(12.0),
+            margin: EdgeInsets.only(bottom: 8.0),
             decoration: BoxDecoration(
               color: type == ChatMessageType.bot ? bgColor : Colors.white,
               borderRadius: const BorderRadius.only(

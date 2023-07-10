@@ -4,6 +4,7 @@ import 'package:graduation_project/shared/components/localization/app_local.dart
 import '../../shared/components/components.dart';
 import '../settings/settings_screen.dart';
 import '../speech/speechscreen.dart';
+import '../video_Call/join_screen.dart';
 import '../video_Call/volunteer_joinScreen.dart';
 
 class VolunteerFeaturesScreen extends StatelessWidget {
@@ -16,12 +17,12 @@ class VolunteerFeaturesScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(
+        iconTheme: IconThemeData(
           color: Colors.white, //
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: 10.0,
               vertical: 10.0,
             ),
@@ -34,7 +35,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
               child: IconButton(
                 color: Colors.white,
                 iconSize: 20,
-                icon: const Icon(Icons.settings),
+                icon: Icon(Icons.settings),
                 onPressed: () {
                   navigateTo(context, Settings());
                 },
@@ -84,7 +85,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 10.0,
                       ),
                       Row(
@@ -103,7 +104,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                                   color: Color.fromARGB(255, 180, 31, 87))),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 15.0,
                       ),
                       GestureDetector(
@@ -122,7 +123,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                           child: Center(
                             child: Row(
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   width: 7,
                                 ),
                                 Icon(
@@ -168,7 +169,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                           child: Center(
                             child: Row(
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   width: 7,
                                 ),
                                 Icon(
@@ -194,7 +195,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                         'assets/Header.png',
                         scale: 1,
                         fit: BoxFit.fitHeight,
-                        opacity: const AlwaysStoppedAnimation(.3),
+                        opacity: AlwaysStoppedAnimation(.3),
                       ),
                     ],
                   ),
