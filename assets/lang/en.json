@@ -65,12 +65,13 @@
     "Volunteer Screen" : "--comment--",
     "h1":"Volunteer",
     "h2":"Mode",
+    "join_v" :"join meeting", 
 
     "join Screen":"--comment--",
     "Please enter valid meeting id" : "Please enter valid meeting id",
     "Create Meeting" : "Create Meeting",
     "Enter Meeting Id":"Enter Meeting Id",
-    "Join Meeting as Viewer" :"Join Meeting as Viewer",
+    "Join_b" :"Join",
 
 
     "Text Recognition screen" : "--comment--",

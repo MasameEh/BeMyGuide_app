@@ -108,7 +108,8 @@ class VolunteerJoinScreen extends StatelessWidget {
                           ],
                         ),
                         TextField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0)),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
                             border: const OutlineInputBorder(),
@@ -119,14 +120,14 @@ class VolunteerJoinScreen extends StatelessWidget {
                         const SizedBox(height: 20),
                         //Joining the meeting as viewer
                         ElevatedButton(
-                            onPressed: () =>
-                                onJoinButtonPressed(context, Mode.VIEWER),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 180, 31, 87)),
-                            ),
-                            child: Text(
-                                "${getLang(context, 'Join Meeting as Viewer')}")),
+                          onPressed: () =>
+                              onJoinButtonPressed(context, Mode.CONFERENCE),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 180, 31, 87)),
+                          ),
+                          child: Text("${getLang(context, 'join_v')}"),
+                        ),
 
                         Image.asset(
                           'assets/Header.png',

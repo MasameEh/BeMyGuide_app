@@ -39,24 +39,9 @@ class _MeetingControlsState extends State<MeetingControls> {
         const SizedBox(width: 10),
         ElevatedButton(
           onPressed: _toggleCamera,
-          child: Text(_isFrontCamera ? 'Front Camera' : 'Back Camera'),
+          child: Text(_isFrontCamera ? 'Stop Camera' : 'Open Camera'),
         ),
-        const SizedBox(width: 10),
-        ElevatedButton(
-          onPressed: widget.onHLSButtonPressed,
-          child: Text(
-            widget.hlsState == "HLS_STOPPED"
-                ? 'Start HLS'
-                : widget.hlsState == "HLS_STARTING"
-                    ? "Starting HLS"
-                    : widget.hlsState == "HLS_STARTED" ||
-                            widget.hlsState == "HLS_PLAYABLE"
-                        ? "Stop HLS"
-                        : widget.hlsState == "HLS_STOPPING"
-                            ? "Stopping HLS"
-                            : "Start HLS",
-          ),
-        ),
+        
       ],
     );
   }

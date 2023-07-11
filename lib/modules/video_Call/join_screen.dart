@@ -134,7 +134,8 @@ class JoinScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0)),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
                             border: OutlineInputBorder(),
@@ -146,13 +147,12 @@ class JoinScreen extends StatelessWidget {
                         //Joining the meeting as viewer
                         ElevatedButton(
                           onPressed: () =>
-                              onJoinButtonPressed(context, Mode.VIEWER),
+                              onJoinButtonPressed(context, Mode.CONFERENCE),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 const Color.fromARGB(255, 180, 31, 87)),
                           ),
-                          child: Text(
-                              "${getLang(context, 'Join Meeting as Viewer')}"),
+                          child: Text("${getLang(context, 'Join_b')}"),
                         ),
                         Image.asset(
                           'assets/Header.png',

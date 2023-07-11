@@ -22,7 +22,7 @@
     </queries>
 
    <application
-        android:label="graduation_project"
+        android:label="BeMyGuide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"

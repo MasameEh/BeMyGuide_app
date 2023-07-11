@@ -65,12 +65,13 @@
     "Volunteer Screen" : "--comment--",
     "h1":"وضع",
     "h2":"التطوع",
+    "join_v" :"إنضمام", 
 
     "join Screen":"--comment--",
     "Please enter valid meeting id" : "الرجاء إدخال معرف اجتماع صحيح",
     "Create Meeting" : "إنشاء اجتماع",
     "Enter Meeting Id":"أدخل معرف الاجتماع",
-    "Join Meeting as Viewer" :"الانضمام إلى الاجتماع كمشاهد",
+    "Join_b" :"انضمام",
 
     "Text Recognition screen" : "--comment--",
     "Text Recognition" :"التعرف على النص" ,
