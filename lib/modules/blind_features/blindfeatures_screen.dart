@@ -154,12 +154,10 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                       width: 7,
                                     ),
                                     Text("${getLang(context, "feature1")}",
-                                        style: const TextStyle(
-                                          fontSize: 25,
-                                          color:
-                                              Color.fromARGB(255, 180, 31, 87),
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                         style: GoogleFonts.acme(
+                                        color: Color.fromARGB(255, 180, 31, 87),
+                                        fontSize: 30.0,
+                                      ),)
                                   ],
                                 ),
                               ),
