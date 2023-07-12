@@ -52,8 +52,24 @@ dependencies:
   videosdk: ^1.1.3
   flutter_vlc_player: ^7.2.0
   google_ml_kit: ^0.7.3
+  flutter_localizations :
+    sdk: flutter 
+  localization: ^2.1.0
+  google_maps_flutter: ^2.3.1
+  geolocator: ^7.6.0 
+  awesome_dialog: ^3.1.0
+  geocoding: ^2.1.0
+  
 
 
+  
+  
+
+
+
+
+  
+ 
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -64,6 +80,17 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
+
+
+  flutter_launcher_icons: "^0.13.1"
+ 
+  
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/gp-logo.png"
+  
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,6 +112,8 @@ flutter:
     - assets/Home_background.png
     - assets/Header.png
     - assets/ChatGPT_logo.svg.png
+    - assets/lang/
+    - assets/lang/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

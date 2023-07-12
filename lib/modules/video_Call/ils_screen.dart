@@ -77,7 +77,7 @@ class _ILSScreenState extends State<ILSScreen> {
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 180, 31, 87),
+          backgroundColor: const Color.fromARGB(255, 180, 31, 87),
           title: const Text(
             'VideoSDK ILS QuickStart',
             style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),

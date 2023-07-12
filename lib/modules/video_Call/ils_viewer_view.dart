@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:videosdk/videosdk.dart';
 import 'package:flutter/services.dart';
 
+import '../../shared/components/components.dart';
+import '../volunteer/volunteerfeatures_screen.dart';
 import 'livestream_player.dart';
 
 class ILSViewerView extends StatefulWidget {
@@ -46,7 +48,10 @@ class _ILSViewerViewState extends State<ILSViewerView> {
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: () => {widget.room.leave()},
+                  onPressed: () => {
+                    widget.room.leave(),
+                    navigateTo(context, VolunteerFeaturesScreen())
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),

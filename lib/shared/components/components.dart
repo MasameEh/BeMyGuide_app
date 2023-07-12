@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../modules/login/login_screen.dart';
 import '../network/local/cache_helper.dart';
-import '../network/styles/colors.dart';
+import '../styles/colors.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -21,6 +21,16 @@ Widget defaultButton({
     Container(
       width: width,
       height: height,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: borderColor,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(
+          radius,
+        ),
+        color: background,
+      ),
       child: MaterialButton(
         onPressed: () {
           function();
@@ -32,16 +42,6 @@ Widget defaultButton({
             fontSize: fontSize,
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: borderColor,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(
-          radius,
-        ),
-        color: background,
       ),
     );
 
@@ -91,7 +91,7 @@ Widget defaultFormField({
           ),
         )
             : null,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
 
@@ -162,7 +162,7 @@ void signOut(context)
     {
       navigateAndFinish(
         context,
-        LoginScreen(),
+        const LoginScreen(),
       );
     }
   });

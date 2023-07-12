@@ -1,41 +1,47 @@
 import 'package:flutter/material.dart';
 
-class MeetingControls extends StatelessWidget {
+class MeetingControls extends StatefulWidget {
   final String hlsState;
   final void Function() onToggleMicButtonPressed;
   final void Function() onToggleCameraButtonPressed;
   final void Function() onHLSButtonPressed;
 
-  const MeetingControls(
-      {super.key,
-      required this.hlsState,
-      required this.onToggleMicButtonPressed,
-      required this.onToggleCameraButtonPressed,
-      required this.onHLSButtonPressed});
+  const MeetingControls({
+    Key? key,
+    required this.hlsState,
+    required this.onToggleMicButtonPressed,
+    required this.onToggleCameraButtonPressed,
+    required this.onHLSButtonPressed,
+  }) : super(key: key);
+
+  @override
+  _MeetingControlsState createState() => _MeetingControlsState();
+}
+
+class _MeetingControlsState extends State<MeetingControls> {
+  bool _isFrontCamera = true; // Initial camera selection
+
+  void _toggleCamera() {
+    setState(() {
+      _isFrontCamera = !_isFrontCamera;
+    });
+    widget.onToggleCameraButtonPressed(); // Call the provided callback
+  }
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       children: [
         ElevatedButton(
-            onPressed: onToggleMicButtonPressed,
-            child: const Text('Toggle Mic')),
+          onPressed: widget.onToggleMicButtonPressed,
+          child: const Text('Toggle Mic'),
+        ),
         const SizedBox(width: 10),
         ElevatedButton(
-            onPressed: onToggleCameraButtonPressed,
-            child: const Text('Toggle WebCam')),
-        const SizedBox(width: 10),
-        ElevatedButton(
-            onPressed: onHLSButtonPressed,
-            child: Text(hlsState == "HLS_STOPPED"
-                ? 'Start HLS'
-                : hlsState == "HLS_STARTING"
-                    ? "Starting HLS"
-                    : hlsState == "HLS_STARTED" || hlsState == "HLS_PLAYABLE"
-                        ? "Stop HLS"
-                        : hlsState == "HLS_STOPPING"
-                            ? "Stopping HLS"
-                            : "Start HLS")),
+          onPressed: _toggleCamera,
+          child: Text(_isFrontCamera ? 'Stop Camera' : 'Open Camera'),
+        ),
+        
       ],
     );
   }

@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <queries>
         <intent>
             <action android:name="android.speech.RecognitionService" />
@@ -19,9 +22,11 @@
     </queries>
 
    <application
-        android:label="graduation_project"
+        android:label="BeMyGuide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBXumvpBpk-ZPRF0zY62ErVGSbV-2B98zQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

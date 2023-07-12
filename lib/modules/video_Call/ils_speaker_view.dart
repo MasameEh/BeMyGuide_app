@@ -4,6 +4,7 @@ import 'package:graduation_project/shared/components/components.dart';
 import 'package:videosdk/videosdk.dart';
 import 'package:flutter/services.dart';
 
+import '../../layout/eyes_app/eyes_layout.dart';
 import '../blind_features/blindfeatures_screen.dart';
 import 'meeting_controls.dart';
 
@@ -69,9 +70,9 @@ class _ILSSpeakerViewState extends State<ILSSpeakerView> {
               ),
               const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () => {
-                  widget.room.leave(),
-                  navigateTo(context, BlindFeaturesScreen())
+                onPressed: () {
+                  widget.room.leave();
+                  navigateTo(context, EyesLayout());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

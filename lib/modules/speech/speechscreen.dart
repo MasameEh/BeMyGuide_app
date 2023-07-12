@@ -3,13 +3,15 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduation_project/shared/network/TextToSpeech.dart';
+import 'package:graduation_project/shared/TextToSpeech.dart';
 
-import 'package:graduation_project/shared/network/api_servcies.dart';
+
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../models/chat_model.dart';
-import '../../shared/network/styles/colors.dart';
+import '../../shared/network/remote/api_servcies.dart';
+
+import '../../shared/styles/colors.dart';
 
 class SpeechScreen extends StatefulWidget {
   final bool ar;

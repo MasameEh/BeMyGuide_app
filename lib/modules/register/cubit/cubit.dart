@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,12 +5,9 @@ import 'package:graduation_project/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/modules/register/cubit/states.dart';
 
-
 class AppRegisterCubit extends Cubit<AppRegisterStates> {
-
   AppRegisterCubit() : super(AppRegisterInitialState());
   static AppRegisterCubit get(context) => BlocProvider.of(context);
-
 
   void userRegister({
     required String email,
@@ -22,8 +18,8 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     emit(AppRegisterLoadingState());
 
     try {
-      UserCredential user = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential user =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -43,13 +39,12 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     required String name,
     required String phone,
     required String? uId,
-  })
-  {
+  }) {
     UserDataModel model = UserDataModel(
-      email: email ,
+      email: email,
       name: name,
-      phone: phone ,
-      uId: uId ,
+      phone: phone,
+      uId: uId,
     );
     FirebaseFirestore.instance
         .collection('users')
@@ -58,7 +53,7 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
         .then((value) {
       emit(AppCreateUserSuccessState(uId));
       print(uId);
-    }).catchError((error){
+    }).catchError((error) {
       emit(AppCreateUserErrorState(error.toString()));
     });
   }
@@ -66,12 +61,10 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
   bool isPass = true;
   IconData suffix = Icons.visibility_outlined;
 
-  void changePasswordVisibility()
-  {
+  void changePasswordVisibility() {
     isPass = !isPass;
-    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+    suffix = isPass ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(AppRegisterChangePasswordVisibilityState());
   }
-
 }

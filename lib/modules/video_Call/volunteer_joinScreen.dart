@@ -5,27 +5,10 @@ import '../../shared/components/localization/app_local.dart';
 import '../../shared/network/video_call_api.dart';
 import 'ils_screen.dart';
 
-class JoinScreen extends StatelessWidget {
+class VolunteerJoinScreen extends StatelessWidget {
   final _meetingIdController = TextEditingController();
 
-  JoinScreen({super.key});
-
-  //Creates new Meeting Id and joins it in CONFERNCE mode.
-  void onCreateButtonPressed(BuildContext context) async {
-    // call api to create meeting and navigate to ILSScreen with meetingId,token and mode
-    await createMeeting().then((meetingId) {
-      if (!context.mounted) return;
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ILSScreen(
-            meetingId: meetingId,
-            token: token,
-            mode: Mode.CONFERENCE,
-          ),
-        ),
-      );
-    });
-  }
+  VolunteerJoinScreen({super.key});
 
   //Join the provided meeting with given Mode and meetingId
   void onJoinButtonPressed(BuildContext context, Mode mode) {
@@ -124,22 +107,13 @@ class JoinScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        ElevatedButton(
-                          onPressed: () => onCreateButtonPressed(context),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 180, 31, 87)),
-                          ),
-                          child: Text("${getLang(context, 'Create Meeting')}"),
-                        ),
-                        const SizedBox(height: 20),
                         TextField(
                           style: const TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0)),
                           decoration: InputDecoration(
                             hintText: "${getLang(context, 'Enter Meeting Id')}",
-                            border: OutlineInputBorder(),
-                            hintStyle: TextStyle(color: Colors.grey),
+                            border: const OutlineInputBorder(),
+                            hintStyle: const TextStyle(color: Colors.grey),
                           ),
                           controller: _meetingIdController,
                         ),
@@ -152,8 +126,9 @@ class JoinScreen extends StatelessWidget {
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 const Color.fromARGB(255, 180, 31, 87)),
                           ),
-                          child: Text("${getLang(context, 'Join_b')}"),
+                          child: Text("${getLang(context, 'join_v')}"),
                         ),
+
                         Image.asset(
                           'assets/Header.png',
                           scale: 1,

@@ -1,0 +1,91 @@
+{  
+    "eyeLayoutScreen":"--comment--",
+    "title1" : "Choose The" ,
+    "title2" : "Mode",
+    "title3" : "Assistant",
+    "title4" : "Volunteer",
+
+    "BlindFeaturesScreen" : "--comment--",
+    "headLine1" : "Assistant",
+    "headLine2" : "Mode",
+    "feature1" : "Glasses Connection",
+    "feature2" : "Video Call",
+    "feature3" : "Chatgpt-AR",
+    "feature4" : "Chatgpt-EN",
+    "feature5" : "Google Maps",
+    "feature6" : "Text Recognition",
+
+
+    "BluetoothScreen" : "--comment--",
+    "Glasses Connection" :"Send a pic",
+    "Select photos from gallery" :"Select photos from gallery",
+    "Take Photo":"Take Photo",
+    "gallery" :"Gallery",
+    "camera" : "camera",
+    "No Image selected" : "No Image selected",
+    "Photo uploaded successfully":"Photo uploaded successfully",
+    "Photo uploaded failed":"Photo uploaded failed",
+    
+
+    " ForgotPassword " : "--comment--",
+    "Reset Your Password" : "Reset Your Password",
+    "Receive":"Receive an email to\n reset your password.",
+    "Email Address":"Email Address",
+    "please enter your email address":"please enter your email address",
+    "Reset Password":"Reset Password",
+
+    "LoginScreen" : "--comment--" ,
+    "Wrong UserName or Password":"Wrong UserName or Password",
+    "Log In":"Log In",
+    "please enter your password":"please enter your password",
+    "Password must be at least 6 characters":"Password must be at least 6 characters",
+    "Password":"Password",
+    "Forgot Password?":"Forgot Password?",
+    "message":"Don't have an account?",
+    "Sign Up":"Sign Up",
+    "button" : "Login",
+
+    "register Screen" : "--comment--",
+    "please enter your name":"please enter your name" ,
+    "User Name":"User Name",
+    "please enter your phone number":"please enter your phone number",
+    "Phone Number":"Phone Number",
+    "b2" : "Sign Up",
+
+    "sitting screen":"--comment--",
+    "Settings" : "Settings" ,
+    "update" :"Update",
+    "Sign out" : "Sign out",
+
+    "speech screen":"---comment--",
+    "ChatGPT Assistant":"ChatGPT Assistant",
+    "Hold the button and start speaking":"Hold the button and start speaking",
+    "Failed to process. Try again!":"Failed to process. Try again!",
+
+    "Volunteer Screen" : "--comment--",
+    "h1":"Volunteer",
+    "h2":"Mode",
+    "join_v" :"join meeting", 
+
+    "join Screen":"--comment--",
+    "Please enter valid meeting id" : "Please enter valid meeting id",
+    "Create Meeting" : "Create Meeting",
+    "Enter Meeting Id":"Enter Meeting Id",
+    "Join_b" :"Join",
+
+
+    "Text Recognition screen" : "--comment--",
+    "Text Recognition" :"Text Recognition" ,
+    "Image contents" :"Image contents",
+    "Read" :"Read",
+    "Pause":"Pause",
+    "error" : "Error occurred while scanning",
+    
+    "google":"comment",
+    "back" :"Back to the previous screen Features",
+    "m1" : "You are currently at ",
+    "bak" : "Back"
+
+
+
+}
