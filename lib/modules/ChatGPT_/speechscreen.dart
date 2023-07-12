@@ -4,13 +4,13 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
-import 'package:graduation_project/shared/network/TextToSpeech.dart';
+import 'package:graduation_project/shared/TextToSpeech.dart';
 
-import 'package:graduation_project/shared/network/api_servcies.dart';
+import 'package:graduation_project/shared/network/remote/api_servcies.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../models/chat_model.dart';
-import '../../shared/network/styles/colors.dart';
+import '../../shared/styles/colors.dart';
 
 class SpeechScreen extends StatefulWidget {
   final bool ar;
@@ -91,7 +91,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             await speechToText.stop();
 
             if (text.isNotEmpty &&
-                text != "Hold the button and start speaking") {
+                text != "Hold the button and start speaking" && text != "اضغط على الزر ثم ابدأ بالتحدث") {
               messages.add(ChatMessage(text: text, type: ChatMessageType.user));
               var msg = await ApiServices.sendMessage(text);
               msg = msg?.trim();
@@ -110,6 +110,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Failed to process. Try again!")));
             }
+            text = widget.ar ? "اضغط على الزر ثم ابدأ بالتحدث" : "Hold the button and start speaking";
           },
           child: CircleAvatar(
             radius: 35,
@@ -122,11 +123,6 @@ class _SpeechScreenState extends State<SpeechScreen> {
       appBar: AppBar(
           backgroundColor: lighten(Colors.pink, .2),
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_outlined, color: Colors.white)),
           title: Text(' ChatGPT Assistant')),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),

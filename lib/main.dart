@@ -8,7 +8,7 @@ import 'package:graduation_project/modules/login/login_screen.dart';
 import 'package:graduation_project/shared/bloc_observer.dart';
 import 'package:graduation_project/shared/components/constants.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
-import 'package:graduation_project/shared/network/TextToSpeech.dart';
+import 'package:graduation_project/shared/TextToSpeech.dart';
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
 import 'package:graduation_project/shared/network/remote/dio_helper.dart';
 import 'package:path/path.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 //backgroundColor: Colors.white,
                 iconTheme: IconThemeData(
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 elevation: 0.0,
                 systemOverlayStyle: SystemUiOverlayStyle(

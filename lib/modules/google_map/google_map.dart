@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
-import 'package:graduation_project/shared/network/TextToSpeech.dart';
+import 'package:graduation_project/shared/TextToSpeech.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
   const GoogleMapsScreen({Key? key}) : super(key: key);

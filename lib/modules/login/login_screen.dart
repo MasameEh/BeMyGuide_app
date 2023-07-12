@@ -12,7 +12,7 @@ import 'package:graduation_project/shared/components/localization/app_local.dart
 import 'package:graduation_project/shared/network/local/cache_helper.dart';
 
 import '../../shared/components/components.dart';
-import '../../shared/network/styles/colors.dart';
+import '../../shared/styles/colors.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {

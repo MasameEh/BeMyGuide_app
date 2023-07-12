@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/shared/components/localization/app_local.dart';
 
 import '../../shared/components/components.dart';
+import '../ChatGPT_/speechscreen.dart';
 import '../settings/settings_screen.dart';
-import '../speech/speechscreen.dart';
 import '../video_Call/join_screen.dart';
 import '../video_Call/volunteer_joinScreen.dart';
 
@@ -135,11 +136,11 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                                   width: 7,
                                 ),
                                 Text("${getLang(context, 'feature2')}",
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      color: Color.fromARGB(255, 180, 31, 87),
-                                      fontWeight: FontWeight.bold,
-                                    )),
+                                  style: GoogleFonts.acme(
+                                    color: Color.fromARGB(255, 180, 31, 87),
+                                    fontSize: 30.0,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -173,7 +174,7 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                                   width: 7,
                                 ),
                                 Icon(
-                                  Icons.video_call,
+                                  Icons.chat,
                                   color: Colors.grey.withOpacity(.6),
                                   size: 30,
                                 ),
@@ -181,11 +182,11 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                                   width: 7,
                                 ),
                                 Text("${getLang(context, "feature3")}",
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      color: Color.fromARGB(255, 180, 31, 87),
-                                      fontWeight: FontWeight.bold,
-                                    )),
+                                  style: GoogleFonts.acme(
+                                    color: Color.fromARGB(255, 180, 31, 87),
+                                    fontSize: 30.0,
+                                  ),
+                                ),
                               ],
                             ),
                           ),

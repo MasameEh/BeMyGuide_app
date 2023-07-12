@@ -6,7 +6,7 @@ import 'package:graduation_project/shared/components/components.dart';
 import '../../layout/eyes_app/cubit/cubit.dart';
 import '../../layout/eyes_app/cubit/states.dart';
 import '../../shared/components/localization/app_local.dart';
-import '../../shared/network/styles/colors.dart';
+import '../../shared/styles/colors.dart';
 
 class Settings extends StatelessWidget {
   var emailAddressController = TextEditingController();

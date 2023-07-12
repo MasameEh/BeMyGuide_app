@@ -20,33 +20,8 @@ class EyesLayout extends StatefulWidget {
 }
 
 class _EyesLayoutState extends State<EyesLayout> {
-  void submit() {
-    CacheHelper.saveData(
-      key: 'isBlind',
-      value: true,
-    ).then((value) {
-      if (value) {
-        navigateAndFinish(
-          context,
-          const BlindFeaturesScreen(),
-        );
-      }
-    });
-  }
 
-  void submit1() {
-    CacheHelper.saveData(
-      key: 'isVolunteer',
-      value: true,
-    ).then((value) {
-      if (value) {
-        navigateAndFinish(
-          context,
-          VolunteerFeaturesScreen(),
-        );
-      }
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,35 +30,6 @@ class _EyesLayoutState extends State<EyesLayout> {
       builder: (context, state) {
         return Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            iconTheme: const IconThemeData(
-              color: Colors.white, //
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                  vertical: 10.0,
-                ),
-                child: Container(
-                  width: 34.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.white.withOpacity(.3),
-                  ),
-                  child: IconButton(
-                    color: Colors.white,
-                    iconSize: 20,
-                    icon: Icon(Icons.settings),
-                    onPressed: () {
-                      navigateTo(context, Settings());
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
           body: SingleChildScrollView(
             child: Container(
               decoration: const BoxDecoration(
@@ -150,9 +96,13 @@ class _EyesLayoutState extends State<EyesLayout> {
                             height: 60.0,
                             borderColor: Colors.black.withOpacity(.4),
                             function: () {
-                              submit();
-                              CacheHelper.putBoolean(
-                                  key: 'isBlind', value: false);
+                              // submit();
+                              // CacheHelper.putBoolean(
+                              //     key: 'isBlind', value: false);
+                              navigateAndFinish(
+                                context,
+                                const BlindFeaturesScreen(),
+                              );
                               AppCubit.get(context).getUserData();
                             },
                             textColor: Color.fromARGB(255, 180, 31, 87),
@@ -168,9 +118,13 @@ class _EyesLayoutState extends State<EyesLayout> {
                             height: 60.0,
                             radius: 20.0,
                             function: () {
-                              submit1();
-                              CacheHelper.putBoolean(
-                                  key: 'isVolunteer', value: false);
+                              // submit1();
+                              // CacheHelper.putBoolean(
+                              //     key: 'isVolunteer', value: false);
+                              navigateAndFinish(
+                                context,
+                                VolunteerFeaturesScreen(),
+                              );
                               AppCubit.get(context).getUserData();
                             },
                             borderColor: Colors.black.withOpacity(.4),
@@ -196,5 +150,32 @@ class _EyesLayoutState extends State<EyesLayout> {
         );
       },
     );
+  }
+  void submit() {
+    CacheHelper.saveData(
+      key: 'isBlind',
+      value: true,
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(
+          context,
+          const BlindFeaturesScreen(),
+        );
+      }
+    });
+  }
+
+  void submit1() {
+    CacheHelper.saveData(
+      key: 'isVolunteer',
+      value: true,
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(
+          context,
+          VolunteerFeaturesScreen(),
+        );
+      }
+    });
   }
 }

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../modules/login/login_screen.dart';
 import '../network/local/cache_helper.dart';
-import '../network/styles/colors.dart';
+import '../styles/colors.dart';
 
 Widget defaultButton({
   double width = double.infinity,

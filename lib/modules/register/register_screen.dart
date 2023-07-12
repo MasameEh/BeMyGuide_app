@@ -10,7 +10,7 @@ import '../../layout/eyes_app/eyes_layout.dart';
 import '../../shared/components/components.dart';
 import '../../shared/components/localization/app_local.dart';
 import '../../shared/network/local/cache_helper.dart';
-import '../../shared/network/styles/colors.dart';
+import '../../shared/styles/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
