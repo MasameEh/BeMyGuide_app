@@ -8,7 +8,7 @@
     "BlindFeaturesScreen" : "--comment--",
     "headLine1" : "وضع",
     "headLine2" : "المساعد",
-    "feature1" : " التوصيل بالنظارة",
+    "feature1" : "الاتصال بالنظاره",
     "feature2" : "مكالمة ڤيديو",
     "feature3" : "شات جي بي تي بالعربي",
     "feature4" : "شات جي بي تي بالإنجليزية",
@@ -16,7 +16,7 @@
     "feature6" : "التعرف على النص ",
 
     "BluetoothScreen" : "--comment--",
-    "Glasses Connection" :"إرسال صورة",
+    "Glasses Connection" :"إتصال النظارة",
     "Select photos from gallery" :"إختيار صورة من معرض الصور ",
     "Take Photo":"إلتقاط صورة",
     "gallery" :"معرض الصور",
@@ -28,7 +28,7 @@
 
     " ForgotPassword " : "--comment--",
     "Reset Your Password" : "إعادة تعيين كلمة المرور الخاصة بك",
-    "Receive an email to\n reset your password.":"تلقي بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك",
+    "Receive":"تلقي بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك",
     "Email Address":"البريد الإلكتروني",
     "please enter your email address":"الرجاء إدخال عنوان البريد الإلكتروني الخاص بك",
     "Reset Password":"إعادة تعيين كلمة المرور",
@@ -43,8 +43,6 @@
     "message":"ليس لديك حساب؟",
     "Sign Up":"إنشاء حساب",
     "button" : "تسجيل",
-
-
     "register Screen" : "--comment--",
     "please enter your name":"من فضلك ادخل اسمك" ,
     "User Name":"اسم المستخدم",
@@ -71,6 +69,7 @@
     "Please enter valid meeting id" : "الرجاء إدخال معرف اجتماع صحيح",
     "Create Meeting" : "إنشاء اجتماع",
     "Enter Meeting Id":"أدخل معرف الاجتماع",
+    "Join Meeting as Viewer" :"الانضمام إلى الاجتماع كمشاهد",
     "Join_b" :"انضمام",
 
     "Text Recognition screen" : "--comment--",
