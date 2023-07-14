@@ -249,7 +249,11 @@ Future<void> selectImages() async {
 void uploadPhotos(BuildContext context) async {
   await selectImages();
   if (selectedImages.isEmpty) {
-    SnackBar snackBar4 = SnackBar(content: Text('No Image selected'),duration: Duration(seconds: 5),);
+    SnackBar snackBar4 = SnackBar(
+        // ignore: use_build_context_synchronously
+        content: Text("${getLang(context, 'No Image selected')}"),
+        duration: Duration(seconds: 5),
+      );
       ScaffoldMessenger.of(context).showSnackBar(snackBar4);
     print('No image selected');
     return;
@@ -271,21 +275,32 @@ void uploadPhotos(BuildContext context) async {
 
     if (response.statusCode == 200) {
       // Upload successful
-      SnackBar snackBar = SnackBar(content: Text('Photo uploaded successfully'),duration: Duration(seconds: 5),);
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+       SnackBar snackBar = SnackBar(
+           
+            content: Text("${getLang(context, 'Photo uploaded successfully')}"),
+            duration: Duration(seconds: 10),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
       print('-****************Photo uploaded successfully');
        print('Response: ${response.data}');
     } else {
       // Upload failed
-      SnackBar snackBar2 = SnackBar(content: Text('Photo uploaded failed Because an error in server'),duration: Duration(seconds: 5),);
-      ScaffoldMessenger.of(context).showSnackBar(snackBar2);
+      SnackBar snackBar2 = SnackBar(
+           
+            content: Text("${getLang(context, 'Photo uploaded failed Because an error in server')}"),
+            duration: Duration(seconds: 5),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar2);
       print('Photo upload failed');
        print('Response: ${response.data}');
     }
   } catch (error) {
     // Error occurred during the upload
-    SnackBar snackBar3 = SnackBar(content: Text('Uploading photo Failed'),duration: Duration(seconds: 5),);
-     ScaffoldMessenger.of(context).showSnackBar(snackBar3);
+     SnackBar snackBar3 = SnackBar(
+          content: Text('Uploading photo Failed'),
+          duration: Duration(seconds: 5),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar3);
     print('Error uploading photo: $error');
   }
 }

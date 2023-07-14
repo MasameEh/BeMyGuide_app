@@ -310,30 +310,28 @@ class _MyWidgetState extends State<BlindFeaturesScreen> {
                                 border: Border.all(
                                     color: Colors.black.withOpacity(.4)),
                               ),
-                              child: Center(
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 7,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(                   
+                                  children: [
+                                    SizedBox(
+                                      width: 7,
+                                    ),
+                                    Icon(
+                                      Icons.chat,
+                                      color: Colors.grey.withOpacity(.6),
+                                      size: 30,
+                                    ),
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text("${getLang(context, "feature4")}",
+                                      style: GoogleFonts.acme(
+                                        color: Color.fromARGB(255, 180, 31, 87),
+                                        fontSize: 30.0,
                                       ),
-                                      Icon(
-                                        Icons.chat,
-                                        color: Colors.grey.withOpacity(.6),
-                                        size: 30,
-                                      ),
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text("${getLang(context, "feature4")}",
-                                        style: GoogleFonts.acme(
-                                          color: Color.fromARGB(255, 180, 31, 87),
-                                          fontSize: 30.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
