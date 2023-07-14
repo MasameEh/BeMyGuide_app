@@ -192,6 +192,53 @@ class VolunteerFeaturesScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          ar = false;
+                          navigateTo(
+                              context,
+                              SpeechScreen(
+                                ar: ar,
+                              )
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: 60.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                            border: Border.all(
+                                color: Colors.black.withOpacity(.4)),
+                          ),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 7,
+                                ),
+                                Icon(
+                                  Icons.chat,
+                                  color: Colors.grey.withOpacity(.6),
+                                  size: 30,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text("${getLang(context, "feature4")}",
+                                  style: GoogleFonts.acme(
+                                    color: Color.fromARGB(255, 180, 31, 87),
+                                    fontSize: 30.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                       Image.asset(
                         'assets/Header.png',
                         scale: 1,

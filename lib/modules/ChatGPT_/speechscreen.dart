@@ -3,7 +3,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:graduation_project/shared/components/localization/app_local.dart';
 import 'package:graduation_project/shared/TextToSpeech.dart';
 
 import 'package:graduation_project/shared/network/remote/api_servcies.dart';
