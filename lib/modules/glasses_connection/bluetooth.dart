@@ -41,18 +41,7 @@ class _MyWidgetState extends State<bluetoothScreen> {
     }
   }
 
-  List<File> selectedImages = [];
-  Future<void> selectImages() async {
-    final imagePicker = ImagePicker();
-    final pickedImages = await imagePicker.pickMultiImage();
-
-    if (pickedImages != null) {
-      setState(() {
-        selectedImages =
-            pickedImages.map((pickedImage) => File(pickedImage.path)).toList();
-      });
-    }
-  }
+ 
 
 /********************************* */
   void uploadPhoto(BuildContext context, String type) async {
@@ -94,8 +83,8 @@ class _MyWidgetState extends State<bluetoothScreen> {
           // Upload failed
           SnackBar snackBar2 = SnackBar(
             // ignore: use_build_context_synchronously
-            content: Text("${getLang(context, 'Photo uploaded failed')}"),
-            duration: Duration(seconds: 10),
+            content: Text("${getLang(context, 'Photo uploaded failed Because an error in server')}"),
+            duration: Duration(seconds: 5),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar2);
           print('Photo upload failed');
@@ -103,8 +92,8 @@ class _MyWidgetState extends State<bluetoothScreen> {
       } catch (error) {
         // Error occurred during the upload
         SnackBar snackBar3 = SnackBar(
-          content: Text('Error uploading photo: $error'),
-          duration: Duration(seconds: 10),
+          content: Text('Uploading photo Failed'),
+          duration: Duration(seconds: 5),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar3);
         print('Error uploading photo: $error');
@@ -204,9 +193,8 @@ class _MyWidgetState extends State<bluetoothScreen> {
                         height: 60.0,
                         borderColor: Colors.black.withOpacity(.4),
                         function: () {
-                          selectedImage = null;
-                          uploadPhoto(
-                              context, "${getLang(context, 'gallery')}");
+                         
+                          uploadPhotos(context);
                         },
                         textColor: Color.fromARGB(255, 180, 31, 87),
                         text:
@@ -245,4 +233,61 @@ class _MyWidgetState extends State<bluetoothScreen> {
       ),
     );
   }
+   List<XFile> selectedImages = [];
+
+Future<void> selectImages() async {
+  final ImagePicker imagePicker = ImagePicker();
+  final List<XFile>? pickedImages = await imagePicker.pickMultiImage();
+
+  if (pickedImages != null) {
+    setState(() {
+      selectedImages = pickedImages;
+    });
+  }
+}
+
+void uploadPhotos(BuildContext context) async {
+  await selectImages();
+  if (selectedImages.isEmpty) {
+    SnackBar snackBar4 = SnackBar(content: Text('No Image selected'),duration: Duration(seconds: 5),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar4);
+    print('No image selected');
+    return;
+  }
+
+  Dio dio = Dio();
+
+  try {
+    List<MultipartFile> multipartFiles = [];
+    for (XFile image in selectedImages) {
+      multipartFiles.add(await MultipartFile.fromFile(image.path));
+    }
+
+    FormData formData = FormData.fromMap({
+      'images': multipartFiles,
+    });
+
+    Response response = await dio.post('https://2edb-45-242-56-239.ngrok-free.app/images', data: formData);
+
+    if (response.statusCode == 200) {
+      // Upload successful
+      SnackBar snackBar = SnackBar(content: Text('Photo uploaded successfully'),duration: Duration(seconds: 5),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      print('-****************Photo uploaded successfully');
+       print('Response: ${response.data}');
+    } else {
+      // Upload failed
+      SnackBar snackBar2 = SnackBar(content: Text('Photo uploaded failed Because an error in server'),duration: Duration(seconds: 5),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar2);
+      print('Photo upload failed');
+       print('Response: ${response.data}');
+    }
+  } catch (error) {
+    // Error occurred during the upload
+    SnackBar snackBar3 = SnackBar(content: Text('Uploading photo Failed'),duration: Duration(seconds: 5),);
+     ScaffoldMessenger.of(context).showSnackBar(snackBar3);
+    print('Error uploading photo: $error');
+  }
+}
+
 }
